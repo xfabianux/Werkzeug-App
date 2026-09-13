@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -12,1460 +10,1055 @@
 
 <style>
 *{box-sizing:border-box}
-
-body{
-  margin:0;
-  background:#f3f4f6;
-  color:#111827;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-}
-
-header{
-  background:#111827;
-  color:white;
-  padding:18px 16px;
-  padding-top:calc(18px + env(safe-area-inset-top));
-  font-size:22px;
-  font-weight:700;
-}
-
-main{
-  max-width:700px;
-  margin:auto;
-  padding:16px;
-  padding-bottom:40px;
-}
-
-.box{
-  background:white;
-  border-radius:16px;
-  padding:16px;
-  margin-bottom:12px;
-  box-shadow:0 2px 10px rgba(0,0,0,.06);
-}
-
-h1,h2,h3{
-  margin-top:0;
-}
-
-input,textarea,select{
-  width:100%;
-  padding:13px;
-  border:1px solid #d1d5db;
-  border-radius:10px;
-  font-size:16px;
-  margin:6px 0 12px;
-  background:white;
-}
-
-textarea{
-  min-height:90px;
-  resize:vertical;
-}
-
-button{
-  border:0;
-  border-radius:11px;
-  padding:12px 15px;
-  background:#111827;
-  color:white;
-  font-size:16px;
-  font-weight:600;
-  margin:4px 4px 4px 0;
-}
-
-button.secondary{
-  background:#e5e7eb;
-  color:#111827;
-}
-
-button.danger{
-  background:#b91c1c;
-}
-
-label{
-  display:block;
-  font-size:14px;
-  font-weight:600;
-  margin-top:5px;
-}
-
-.muted{
-  color:#6b7280;
-}
-
-.row{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-  align-items:center;
-}
-
-.nav{
-  margin-bottom:12px;
-}
-
-.nav button{
-  font-size:14px;
-}
-
-.tool{
-  display:flex;
-  gap:13px;
-  align-items:flex-start;
-}
-
-.tool-photo{
-  width:90px;
-  height:90px;
-  object-fit:cover;
-  border-radius:13px;
-  background:#e5e7eb;
-  flex-shrink:0;
-}
-
-.tool-photo-placeholder{
-  width:90px;
-  height:90px;
-  border-radius:13px;
-  background:#e5e7eb;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:34px;
-  flex-shrink:0;
-}
-
-.tool-info{
-  flex:1;
-  min-width:0;
-}
-
-.tool-name{
-  font-size:18px;
-  font-weight:700;
-}
-
-.badge{
-  display:inline-block;
-  padding:5px 9px;
-  border-radius:999px;
-  font-size:12px;
-  margin-top:7px;
-  background:#dcfce7;
-  color:#166534;
-}
-
-.badge.loan{
-  background:#fee2e2;
-  color:#991b1b;
-}
-
-.group-code{
-  font-size:30px;
-  font-weight:800;
-  letter-spacing:3px;
-}
-
-.notice{
-  padding:11px 13px;
-  background:#eef2ff;
-  border-radius:10px;
-  margin-bottom:12px;
-}
-
-.error{
-  background:#fee2e2;
-  color:#991b1b;
-}
-
-.success{
-  background:#dcfce7;
-  color:#166534;
-}
-
-.hidden{
-  display:none!important;
-}
-
-.member{
-  padding:10px 0;
-  border-bottom:1px solid #eee;
-}
-
-.member:last-child{
-  border-bottom:0;
-}
-
-.small{
-  font-size:13px;
-}
-
-.photo-preview{
-  width:140px;
-  height:140px;
-  object-fit:cover;
-  border-radius:14px;
-  margin:5px 0 10px;
-}
-
-.empty{
-  text-align:center;
-  padding:25px 10px;
-  color:#6b7280;
-}
+body{margin:0;background:#f3f4f6;color:#111827;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{background:#111827;color:white;padding:18px 16px;padding-top:calc(18px + env(safe-area-inset-top));font-size:22px;font-weight:700}
+main{max-width:700px;margin:auto;padding:16px;padding-bottom:40px}
+.box{background:white;border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+h1,h2,h3{margin-top:0}
+input,textarea,select{width:100%;padding:13px;border:1px solid #d1d5db;border-radius:10px;font-size:16px;margin:6px 0 12px;background:white}
+textarea{min-height:90px;resize:vertical}
+button{border:0;border-radius:11px;padding:12px 15px;background:#111827;color:white;font-size:16px;font-weight:600;margin:4px 4px 4px 0}
+button.secondary{background:#e5e7eb;color:#111827}
+button.danger{background:#b91c1c}
+button:disabled{opacity:.55}
+label{display:block;font-size:14px;font-weight:600;margin-top:5px}
+.muted{color:#6b7280}
+.row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.nav{margin-bottom:12px}
+.nav button{font-size:14px}
+.tool{display:flex;gap:13px;align-items:flex-start}
+.tool-photo{width:90px;height:90px;object-fit:cover;border-radius:13px;background:#e5e7eb;flex-shrink:0}
+.tool-photo-placeholder{width:90px;height:90px;border-radius:13px;background:#e5e7eb;display:flex;align-items:center;justify-content:center;font-size:34px;flex-shrink:0}
+.tool-info{flex:1;min-width:0}
+.tool-name{font-size:18px;font-weight:700}
+.badge{display:inline-block;padding:5px 9px;border-radius:999px;font-size:12px;margin-top:7px;background:#dcfce7;color:#166534}
+.badge.loan{background:#fee2e2;color:#991b1b}
+.group-code{font-size:30px;font-weight:800;letter-spacing:3px}
+.notice{padding:11px 13px;background:#eef2ff;border-radius:10px;margin-bottom:12px}
+.error{background:#fee2e2;color:#991b1b}
+.success{background:#dcfce7;color:#166534}
+.hidden{display:none!important}
+.member{padding:10px 0;border-bottom:1px solid #eee}
+.member:last-child{border-bottom:0}
+.small{font-size:13px}
+.photo-preview{width:140px;height:140px;object-fit:cover;border-radius:14px;margin:5px 0 10px}
+.empty{text-align:center;padding:25px 10px;color:#6b7280}
+.search-wrap{position:relative}
+.search-wrap input{padding-right:45px}
+.search-icon{position:absolute;right:14px;top:17px;font-size:20px;color:#6b7280;pointer-events:none}
+.tool-actions{margin-top:9px}
 </style>
 </head>
 
 <body>
-
 <header>🔧 Werkzeug App</header>
-
 <main>
-  <div id="message" class="notice hidden"></div>
-  <div id="content"></div>
+<div id="message" class="notice hidden"></div>
+<div id="content"></div>
 </main>
 
 <script>
-/* =========================================================
-   SUPABASE
-========================================================= */
+const SUPABASE_URL="https://shxpltkpkjbdyvjcoktc.supabase.co";
+const SUPABASE_KEY="sb_publishable_5jZAPJUN2_DfMPFPBu352Q_RpfjUwPG";
+const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 
-const SUPABASE_URL =
-  "https://shxpltkpkjbdyvjcoktc.supabase.co";
-
-const SUPABASE_KEY =
-  "sb_publishable_5jZAPJUN2_DfMPFPBu352Q_RpfjUwPG";
-
-const db = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
-
-
-/* =========================================================
-   APP STATE
-========================================================= */
-
-const content = document.getElementById("content");
-const message = document.getElementById("message");
-
-let S = loadUser();
-
+const content=document.getElementById("content");
+const message=document.getElementById("message");
+let S=loadUser();
+let currentTools=[];
 
 function loadUser(){
-  try{
-    const saved = localStorage.getItem("werkzeug_app_user");
-
-    if(!saved) return null;
-
-    const user = JSON.parse(saved);
-
-    if(
-      user &&
-      typeof user.name === "string" &&
-      typeof user.group === "string" &&
-      user.name.trim() &&
-      user.group.trim()
-    ){
-      return user;
-    }
-
-    return null;
-
-  }catch(e){
-    return null;
-  }
+try{
+const saved=localStorage.getItem("werkzeug_app_user");
+if(!saved)return null;
+const user=JSON.parse(saved);
+if(user&&typeof user.name==="string"&&typeof user.group==="string"&&user.name.trim()&&user.group.trim())return user;
+return null;
+}catch(e){return null}
 }
-
 
 function saveUser(){
-  localStorage.setItem(
-    "werkzeug_app_user",
-    JSON.stringify(S)
-  );
+localStorage.setItem("werkzeug_app_user",JSON.stringify(S))
 }
-
 
 function clearUser(){
-  localStorage.removeItem("werkzeug_app_user");
-  S = null;
+localStorage.removeItem("werkzeug_app_user");
+S=null
 }
-
 
 function esc(value){
-  return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+return String(value??"")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 }
-
 
 function showMessage(text,type="notice"){
-  message.textContent = text;
-  message.className = "notice " + type;
-
-  setTimeout(()=>{
-    message.className = "notice hidden";
-  },3500);
+message.textContent=text;
+message.className="notice "+type;
+setTimeout(()=>message.className="notice hidden",3500);
 }
-
-
-/* =========================================================
-   START
-========================================================= */
 
 async function start(){
-
-  if(S && S.name && S.group){
-
-    const ok = await checkConnection();
-
-    if(ok){
-      await ensureCurrentMember();
-      home();
-      return;
-    }
-
-  }
-
-  welcome();
+if(S&&S.name&&S.group){
+const ok=await checkConnection();
+if(ok){
+await ensureCurrentMember();
+home();
+return;
 }
-
+}
+welcome();
+}
 
 async function checkConnection(){
-
-  try{
-
-    const { error } = await db
-      .from("members")
-      .select("id")
-      .limit(1);
-
-    if(error) throw error;
-
-    return true;
-
-  }catch(error){
-
-    console.error(error);
-
-    showMessage(
-      "Verbindung zu Supabase fehlgeschlagen.",
-      "error"
-    );
-
-    return false;
-  }
+try{
+const {error}=await db.from("members").select("id").limit(1);
+if(error)throw error;
+return true;
+}catch(error){
+console.error(error);
+showMessage("Verbindung zu Supabase fehlgeschlagen.","error");
+return false;
 }
-
-
-/* =========================================================
-   WILLKOMMEN
-========================================================= */
+}
 
 function welcome(){
+content.innerHTML=`
+<div class="box">
+<h2>Willkommen 👋</h2>
+<p class="muted">Verwalte Werkzeuge gemeinsam mit deinen Freunden.</p>
 
-  content.innerHTML = `
+<label>Dein Name</label>
+<input id="nameInput" placeholder="z. B. Fabian" autocomplete="name">
 
-    <div class="box">
+<label>Gruppen-Code</label>
+<input id="groupInput" placeholder="z. B. ABC123" autocapitalize="characters" autocomplete="off">
 
-      <h2>Willkommen 👋</h2>
+<button id="joinButton">👥 Gruppe beitreten</button>
+<button id="createButton" class="secondary">＋ Neue Gruppe erstellen</button>
+</div>
 
-      <p class="muted">
-        Verwalte Werkzeuge gemeinsam mit deinen Freunden.
-      </p>
+<div class="box">
+<b>Schon einmal angemeldet?</b>
+<p class="muted small">
+Deine Gruppe wird auf diesem iPhone gespeichert.
+Beim nächsten Öffnen musst du Name und Code nicht erneut eingeben.
+</p>
+</div>`;
 
-      <label>Dein Name</label>
-
-      <input
-        id="nameInput"
-        placeholder="z. B. Fabian"
-        autocomplete="name"
-      >
-
-      <label>Gruppen-Code</label>
-
-      <input
-        id="groupInput"
-        placeholder="z. B. ABC123"
-        autocapitalize="characters"
-        autocomplete="off"
-      >
-
-      <button id="joinButton">
-        👥 Gruppe beitreten
-      </button>
-
-      <button id="createButton" class="secondary">
-        ＋ Neue Gruppe erstellen
-      </button>
-
-    </div>
-
-    <div class="box">
-
-      <b>Schon einmal angemeldet?</b>
-
-      <p class="muted small">
-        Deine Gruppe wird auf diesem iPhone gespeichert.
-        Beim nächsten Öffnen musst du Name und Code nicht erneut eingeben.
-      </p>
-
-    </div>
-  `;
-
-  document
-    .getElementById("joinButton")
-    .onclick = () => joinGroup(false);
-
-  document
-    .getElementById("createButton")
-    .onclick = () => joinGroup(true);
+document.getElementById("joinButton").onclick=()=>joinGroup(false);
+document.getElementById("createButton").onclick=()=>joinGroup(true);
 }
-
-
-/* =========================================================
-   GRUPPE ERSTELLEN / BEITRETEN
-========================================================= */
 
 async function joinGroup(createNew){
+const name=document.getElementById("nameInput").value.trim();
+let group=document.getElementById("groupInput").value.trim().toUpperCase();
 
-  const name =
-    document.getElementById("nameInput")
-      .value
-      .trim();
-
-  let group =
-    document.getElementById("groupInput")
-      .value
-      .trim()
-      .toUpperCase();
-
-  if(!name){
-
-    showMessage(
-      "Bitte deinen Namen eingeben.",
-      "error"
-    );
-
-    return;
-  }
-
-
-  if(createNew){
-
-    if(!group){
-
-      group = createGroupCode();
-
-    }
-
-  }else{
-
-    if(!group){
-
-      showMessage(
-        "Bitte den Gruppencode eingeben.",
-        "error"
-      );
-
-      return;
-    }
-
-
-    const { data, error } = await db
-      .from("members")
-      .select("id")
-      .eq("group_code",group)
-      .limit(1);
-
-    if(error){
-
-      console.error(error);
-
-      showMessage(
-        "Gruppe konnte nicht geprüft werden.",
-        "error"
-      );
-
-      return;
-    }
-
-
-    if(!data || data.length === 0){
-
-      showMessage(
-        "Diese Gruppe gibt es noch nicht. Prüfe den Code.",
-        "error"
-      );
-
-      return;
-    }
-  }
-
-
-  S = {
-    name:name,
-    group:group
-  };
-
-  saveUser();
-
-
-  const ok =
-    await ensureCurrentMember();
-
-  if(!ok){
-
-    clearUser();
-
-    return;
-  }
-
-
-  home();
+if(!name){
+showMessage("Bitte deinen Namen eingeben.","error");
+return;
 }
 
+if(createNew){
+if(!group)group=createGroupCode();
+}else{
+if(!group){
+showMessage("Bitte den Gruppencode eingeben.","error");
+return;
+}
+
+const {data,error}=await db
+.from("members")
+.select("id")
+.eq("group_code",group)
+.limit(1);
+
+if(error){
+console.error(error);
+showMessage("Gruppe konnte nicht geprüft werden.","error");
+return;
+}
+
+if(!data||data.length===0){
+showMessage("Diese Gruppe gibt es noch nicht. Prüfe den Code.","error");
+return;
+}
+}
+
+S={name,group};
+saveUser();
+
+const ok=await ensureCurrentMember();
+if(!ok){
+clearUser();
+return;
+}
+
+home();
+}
 
 function createGroupCode(){
-
-  const chars =
-    "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-
-  let result = "";
-
-  for(let i=0;i<6;i++){
-
-    result +=
-      chars[Math.floor(Math.random()*chars.length)];
-
-  }
-
-  return result;
+const chars="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+let result="";
+for(let i=0;i<6;i++){
+result+=chars[Math.floor(Math.random()*chars.length)];
+}
+return result;
 }
 
-
 async function ensureCurrentMember(){
+try{
+const {data,error}=await db
+.from("members")
+.select("id")
+.eq("group_code",S.group)
+.eq("name",S.name)
+.limit(1);
+
+if(error)throw error;
+
+if(!data||data.length===0){
+const result=await db
+.from("members")
+.insert({
+group_code:S.group,
+name:S.name
+});
+
+if(result.error)throw result.error;
+}
+
+return true;
+
+}catch(error){
+console.error(error);
+showMessage("Mitglied konnte nicht gespeichert werden: "+error.message,"error");
+return false;
+}
+}
+
+function navigation(){
+return`
+<div class="box nav">
+<div class="row">
+<button onclick="home()">🔧 Werkzeuge</button>
+<button onclick="people()">👥 Personen</button>
+<button class="secondary" onclick="changeGroup()">Gruppe wechseln</button>
+</div>
+</div>`;
+}
+
+async function home(){
+content.innerHTML=navigation()+`
+<div class="box">
+<b>Gruppe</b>
+<div class="group-code">${esc(S.group)}</div>
+<div class="muted">Hallo ${esc(S.name)} 👋</div>
+<button onclick="addTool()">＋ Werkzeug hinzufügen</button>
+</div>
+
+<div class="box">
+<label for="toolSearch">Werkzeug suchen</label>
+<div class="search-wrap">
+<input id="toolSearch" placeholder="z. B. Hilti, Garten, Fabian..." autocomplete="off">
+<span class="search-icon">🔎</span>
+</div>
+</div>
+
+<div id="toolsList">
+<div class="box muted">Werkzeuge werden geladen...</div>
+</div>`;
+
+const {data,error}=await db
+.from("tools")
+.select("*")
+.eq("group_code",S.group)
+.order("created_at",{ascending:false});
+
+if(error){
+console.error(error);
+document.getElementById("toolsList").innerHTML=
+`<div class="box">
+<b>Fehler</b>
+<p class="muted">${esc(error.message)}</p>
+</div>`;
+return;
+}
+
+currentTools=data||[];
+renderTools(currentTools);
+
+document
+.getElementById("toolSearch")
+.addEventListener("input",e=>filterTools(e.target.value));
+}
+
+function filterTools(query){
+const q=query.trim().toLowerCase();
+
+if(!q){
+renderTools(currentTools);
+return;
+}
+
+const filtered=currentTools.filter(tool=>[
+tool.name,
+tool.category,
+tool.owner,
+tool.description,
+tool.borrower
+].some(value=>
+String(value??"").toLowerCase().includes(q)
+));
+
+renderTools(filtered,q);
+}
+
+function renderTools(tools,searchQuery=""){
+const list=document.getElementById("toolsList");
+if(!list)return;
+
+if(!tools.length){
+list.innerHTML=`
+<div class="box empty">
+🔎
+<p>
+${searchQuery
+?`Keine Werkzeuge für „${esc(searchQuery)}“ gefunden.`
+:"Noch keine Werkzeuge in dieser Gruppe."}
+</p>
+
+${searchQuery
+?`<button class="secondary" onclick="clearToolSearch()">Suche löschen</button>`
+:`<button onclick="addTool()">＋ Erstes Werkzeug hinzufügen</button>`}
+</div>`;
+return;
+}
+
+list.innerHTML=tools.map(tool=>{
+
+let photo=tool.image_url
+?`<img class="tool-photo" src="${esc(tool.image_url)}" alt="">`
+:`<div class="tool-photo-placeholder">🔧</div>`;
+
+let loanStatus="";
+
+if(tool.borrower){
+
+let dueText="";
+
+if(tool.due_date){
+
+const due=new Date(tool.due_date+"T23:59:59");
+const today=new Date();
+today.setHours(0,0,0,0);
+
+const formatted=
+new Date(tool.due_date+"T00:00:00")
+.toLocaleDateString("de-DE");
+
+dueText=due<today
+?`<br>⚠️ Rückgabe überfällig (bis ${formatted})`
+:`<br>📅 Rückgabe bis ${formatted}`;
+}
+
+loanStatus=
+`<span class="badge loan">
+📦 Ausgeliehen an ${esc(tool.borrower)}
+${dueText}
+</span>`;
+
+}else{
+
+loanStatus=
+`<span class="badge">✓ Verfügbar</span>`;
+}
+
+return`
+<div class="box">
+<div class="tool">
+
+${photo}
+
+<div class="tool-info">
+
+<div class="tool-name">
+${esc(tool.name)}
+</div>
+
+<div class="muted">
+${esc(tool.category||"Sonstiges")}
+</div>
+
+<div class="small">
+Besitzer:
+<b>${esc(tool.owner||"Unbekannt")}</b>
+</div>
+
+${tool.description
+?`<p class="small">${esc(tool.description)}</p>`
+:""}
+
+${loanStatus}
+
+<div class="row tool-actions">
+
+${tool.borrower
+?`<button onclick="returnTool('${tool.id}')">
+↩️ Zurückgeben
+</button>`
+:`<button onclick="borrowTool('${tool.id}')">
+📦 Ausleihen
+</button>`}
+
+<button class="secondary" onclick="editTool('${tool.id}')">
+✏️ Bearbeiten
+</button>
+
+<button class="danger" onclick="deleteTool('${tool.id}')">
+🗑️ Löschen
+</button>
+
+</div>
+</div>
+</div>
+</div>`;
+}).join("");
+}
+
+function clearToolSearch(){
+const input=document.getElementById("toolSearch");
+if(input){
+input.value="";
+renderTools(currentTools);
+}
+}
+
+function addTool(){
+content.innerHTML=navigation()+`
+<div class="box">
+<h2>Werkzeug hinzufügen</h2>
+
+<label>Foto</label>
+<input id="photoInput" type="file" accept="image/*" capture="environment">
+<div id="photoPreview"></div>
+
+<label>Werkzeugname</label>
+<input id="toolName" placeholder="z. B. Akkuschrauber">
+
+<label>Beschreibung</label>
+<textarea id="toolDescription" placeholder="z. B. Makita 18V"></textarea>
+
+<label>Kategorie</label>
+<select id="toolCategory">
+<option>Werkstatt</option>
+<option>Garten</option>
+<option>Haus</option>
+<option>Auto</option>
+<option>Baustelle</option>
+<option>Sonstiges</option>
+</select>
+
+<label>Besitzer</label>
+<input id="toolOwner" value="${esc(S.name)}">
+
+<button id="saveToolButton" onclick="saveTool()">
+💾 Werkzeug speichern
+</button>
+
+<button class="secondary" onclick="home()">
+Abbrechen
+</button>
+</div>`;
+
+document
+.getElementById("photoInput")
+.addEventListener("change",previewPhoto);
+}
+
+function previewPhoto(event){
+const file=event.target.files[0];
+if(!file)return;
+
+const reader=new FileReader();
+
+reader.onload=()=>{
+document.getElementById("photoPreview").innerHTML=
+`<img class="photo-preview" src="${reader.result}" alt="Vorschau">`;
+};
+
+reader.readAsDataURL(file);
+}
+
+function resizeImage(file){
+return new Promise((resolve,reject)=>{
+const reader=new FileReader();
+
+reader.onload=()=>{
+const img=new Image();
+
+img.onload=()=>{
+const maxSize=1000;
+let width=img.width;
+let height=img.height;
+
+if(width>height){
+if(width>maxSize){
+height=Math.round(height*maxSize/width);
+width=maxSize;
+}
+}else{
+if(height>maxSize){
+width=Math.round(width*maxSize/height);
+height=maxSize;
+}
+}
+
+const canvas=document.createElement("canvas");
+canvas.width=width;
+canvas.height=height;
+
+canvas
+.getContext("2d")
+.drawImage(img,0,0,width,height);
+
+resolve(canvas.toDataURL("image/jpeg",0.75));
+};
+
+img.onerror=reject;
+img.src=reader.result;
+};
+
+reader.onerror=reject;
+reader.readAsDataURL(file);
+}
+async function saveTool(){
+  const button=document.getElementById("saveToolButton");
+  const name=document.getElementById("toolName").value.trim();
+  const description=document.getElementById("toolDescription").value.trim();
+  const category=document.getElementById("toolCategory").value;
+  const owner=document.getElementById("toolOwner").value.trim();
+  const photo=document.getElementById("photoInput").files[0];
+
+  if(!name){
+    showMessage("Bitte einen Werkzeugnamen eingeben.","error");
+    return;
+  }
+
+  if(!owner){
+    showMessage("Bitte Besitzer eingeben.","error");
+    return;
+  }
+
+  button.disabled=true;
+  button.textContent="Speichere...";
 
   try{
+    let image_url="";
+    if(photo) image_url=await resizeImage(photo);
 
-    const { data, error } = await db
-      .from("members")
-      .select("id")
-      .eq("group_code",S.group)
-      .eq("name",S.name)
-      .limit(1);
-
+    const {error}=await db.from("tools").insert({
+      group_code:S.group,
+      name,
+      category,
+      owner,
+      description,
+      image_url,
+      borrower:null,
+      borrowed_at:null,
+      due_date:null
+    });
 
     if(error) throw error;
 
-
-    if(!data || data.length === 0){
-
-      const result =
-        await db
-          .from("members")
-          .insert({
-            group_code:S.group,
-            name:S.name
-          });
-
-      if(result.error) throw result.error;
-
-    }
-
-    return true;
+    showMessage("Werkzeug gespeichert ✓","success");
+    home();
 
   }catch(error){
-
     console.error(error);
-
     showMessage(
-      "Mitglied konnte nicht gespeichert werden: " +
-      error.message,
+      "Werkzeug konnte nicht gespeichert werden: "+error.message,
       "error"
     );
 
-    return false;
+    button.disabled=false;
+    button.textContent="💾 Werkzeug speichern";
   }
 }
 
+async function editTool(id){
+  const {data:tool,error}=await db
+    .from("tools")
+    .select("*")
+    .eq("id",id)
+    .eq("group_code",S.group)
+    .single();
 
-/* =========================================================
-   NAVIGATION
-========================================================= */
-
-function navigation(){
-
-  return `
-
-    <div class="box nav">
-
-      <div class="row">
-
-        <button onclick="home()">
-          🔧 Werkzeuge
-        </button>
-
-        <button onclick="people()">
-          👥 Personen
-        </button>
-
-        <button
-          class="secondary"
-          onclick="changeGroup()"
-        >
-          Gruppe wechseln
-        </button>
-
-      </div>
-
-    </div>
-
-  `;
-}
-
-
-/* =========================================================
-   WERKZEUGE
-========================================================= */
-
-async function home(){
-
-  content.innerHTML =
-    navigation() +
-
-    `
-
-    <div class="box">
-
-      <b>Gruppe</b>
-
-      <div class="group-code">
-        ${esc(S.group)}
-      </div>
-
-      <div class="muted">
-        Hallo ${esc(S.name)} 👋
-      </div>
-
-      <button onclick="addTool()">
-        ＋ Werkzeug hinzufügen
-      </button>
-
-    </div>
-
-    <div id="toolsList">
-      <div class="box muted">
-        Werkzeuge werden geladen...
-      </div>
-    </div>
-
-    `;
-
-
-  const { data, error } =
-    await db
-      .from("tools")
-      .select("*")
-      .eq("group_code",S.group)
-      .order("created_at",{ascending:false});
-
-
-  if(error){
-
-    console.error(error);
-
-    document.getElementById("toolsList")
-      .innerHTML = `
-
-        <div class="box">
-
-          <b>Fehler</b>
-
-          <p class="muted">
-            ${esc(error.message)}
-          </p>
-
-        </div>
-      `;
-
+  if(error||!tool){
+    showMessage("Werkzeug konnte nicht gefunden werden.","error");
     return;
   }
 
-
-  renderTools(data || []);
-}
-
-
-function renderTools(tools){
-
-  const list =
-    document.getElementById("toolsList");
-
-
-  if(!tools.length){
-
-    list.innerHTML = `
-
-      <div class="box empty">
-
-        🔧
-
-        <p>
-          Noch keine Werkzeuge in dieser Gruppe.
-        </p>
-
-        <button onclick="addTool()">
-          ＋ Erstes Werkzeug hinzufügen
-        </button>
-
-      </div>
-
-    `;
-
-    return;
-  }
-
-
-  list.innerHTML =
-    tools.map(tool => {
-
-      let photo = "";
-
-      if(tool.image_url){
-
-        photo = `
-          <img
-            class="tool-photo"
-            src="${esc(tool.image_url)}"
-            alt=""
-          >
-        `;
-
-      }else{
-
-        photo = `
-          <div class="tool-photo-placeholder">
-            🔧
-          </div>
-        `;
-
-      }
-
-
-      let loanStatus = "";
-
-      if(tool.borrower){
-
-        loanStatus = `
-
-          <span class="badge loan">
-
-            📦 Ausgeliehen an
-            ${esc(tool.borrower)}
-
-          </span>
-
-        `;
-
-      }else{
-
-        loanStatus = `
-
-          <span class="badge">
-            ✓ Verfügbar
-          </span>
-
-        `;
-
-      }
-
-
-      return `
-
-        <div class="box">
-
-          <div class="tool">
-
-            ${photo}
-
-            <div class="tool-info">
-
-              <div class="tool-name">
-                ${esc(tool.name)}
-              </div>
-
-              <div class="muted">
-                ${esc(tool.category || "Sonstiges")}
-              </div>
-
-              <div class="small">
-                Besitzer:
-                <b>${esc(tool.owner || "Unbekannt")}</b>
-              </div>
-
-              ${
-                tool.description
-                ?
-                `<p class="small">${esc(tool.description)}</p>`
-                :
-                ""
-              }
-
-              ${loanStatus}
-
-              <div class="row">
-
-                ${
-                  tool.borrower
-                  ?
-                  `
-                    <button
-                      onclick="returnTool('${tool.id}')"
-                    >
-                      ↩ Zurückgeben
-                    </button>
-                  `
-                  :
-                  `
-                    <button
-                      onclick="borrowTool('${tool.id}')"
-                    >
-                      📦 Ausleihen
-                    </button>
-                  `
-                }
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      `;
-
-    }).join("");
-}
-
-
-/* =========================================================
-   WERKZEUG HINZUFÜGEN
-========================================================= */
-
-function addTool(){
-
-  content.innerHTML =
-    navigation() +
-
-    `
-
-    <div class="box">
-
-      <h2>Werkzeug hinzufügen</h2>
-
-      <label>Foto</label>
-
-      <input
-        id="photoInput"
-        type="file"
-        accept="image/*"
-        capture="environment"
-      >
-
-      <div id="photoPreview"></div>
-
-      <label>Werkzeugname</label>
-
-      <input
-        id="toolName"
-        placeholder="z. B. Hilti Akku Flex"
-      >
-
-      <label>Beschreibung</label>
-
-      <textarea
-        id="toolDescription"
-        placeholder="z. B. Große Akku Flex"
-      ></textarea>
-
-      <label>Kategorie</label>
-
-      <select id="toolCategory">
-
-        <option>Werkstatt</option>
-        <option>Garten</option>
-        <option>Haus</option>
-        <option>Auto</option>
-        <option>Baustelle</option>
-        <option>Sonstiges</option>
-
-      </select>
-
-      <label>Besitzer</label>
-
-      <input
-        id="toolOwner"
-        value="${esc(S.name)}"
-      >
-
-      <button onclick="saveTool()">
-        💾 Werkzeug speichern
-      </button>
-
-      <button
-        class="secondary"
-        onclick="home()"
-      >
-        Abbrechen
-      </button>
-
-    </div>
-
-    `;
-
+  content.innerHTML=navigation()+`
+  <div class="box">
+    <h2>Werkzeug bearbeiten</h2>
+
+    ${tool.image_url
+      ?`<img class="photo-preview" src="${esc(tool.image_url)}" alt="">`
+      :""
+    }
+
+    <label>Neues Foto (optional)</label>
+    <input id="editPhotoInput"
+           type="file"
+           accept="image/*"
+           capture="environment">
+
+    <div id="editPhotoPreview"></div>
+
+    <label>Werkzeugname</label>
+    <input id="editToolName" value="${esc(tool.name)}">
+
+    <label>Beschreibung</label>
+    <textarea id="editToolDescription">${esc(tool.description||"")}</textarea>
+
+    <label>Kategorie</label>
+    <select id="editToolCategory">
+      ${[
+        "Werkstatt",
+        "Garten",
+        "Haus",
+        "Auto",
+        "Baustelle",
+        "Sonstiges"
+      ].map(c=>`
+        <option ${c===(tool.category||"Sonstiges")
+          ?"selected"
+          :""
+        }>${c}</option>
+      `).join("")}
+    </select>
+
+    <label>Besitzer</label>
+    <input id="editToolOwner" value="${esc(tool.owner||"")}">
+
+    <button id="updateToolButton"
+            onclick="updateTool('${tool.id}')">
+      💾 Änderungen speichern
+    </button>
+
+    <button class="secondary" onclick="home()">
+      Abbrechen
+    </button>
+  </div>`;
 
   document
-    .getElementById("photoInput")
-    .addEventListener("change",previewPhoto);
+    .getElementById("editPhotoInput")
+    .addEventListener("change",previewEditPhoto);
 }
 
+function previewEditPhoto(event){
+  const file=event.target.files[0];
 
-function previewPhoto(event){
+  if(!file)return;
 
-  const file =
-    event.target.files[0];
+  const reader=new FileReader();
 
-  if(!file) return;
-
-
-  const reader =
-    new FileReader();
-
-
-  reader.onload = function(){
-
-    document.getElementById("photoPreview")
-      .innerHTML = `
-
-        <img
-          class="photo-preview"
-          src="${reader.result}"
-          alt="Vorschau"
-        >
-
-      `;
-
+  reader.onload=()=>{
+    document.getElementById("editPhotoPreview").innerHTML=
+      `<img class="photo-preview"
+            src="${reader.result}"
+            alt="Neue Vorschau">`;
   };
-
 
   reader.readAsDataURL(file);
 }
 
+async function updateTool(id){
+  const button=document.getElementById("updateToolButton");
 
-/* =========================================================
-   FOTO VERKLEINERN
-========================================================= */
+  const name=document
+    .getElementById("editToolName")
+    .value
+    .trim();
 
-async function resizeImage(file){
+  const description=document
+    .getElementById("editToolDescription")
+    .value
+    .trim();
 
-  return new Promise((resolve,reject)=>{
+  const category=document
+    .getElementById("editToolCategory")
+    .value;
 
-    const reader =
-      new FileReader();
+  const owner=document
+    .getElementById("editToolOwner")
+    .value
+    .trim();
 
-
-    reader.onload = function(){
-
-      const img =
-        new Image();
-
-
-      img.onload = function(){
-
-        const maxSize = 700;
-
-        let width = img.width;
-        let height = img.height;
-
-
-        if(width > height){
-
-          if(width > maxSize){
-
-            height =
-              Math.round(
-                height * maxSize / width
-              );
-
-            width = maxSize;
-          }
-
-        }else{
-
-          if(height > maxSize){
-
-            width =
-              Math.round(
-                width * maxSize / height
-              );
-
-            height = maxSize;
-          }
-
-        }
-
-
-        const canvas =
-          document.createElement("canvas");
-
-        canvas.width = width;
-        canvas.height = height;
-
-
-        const ctx =
-          canvas.getContext("2d");
-
-
-        ctx.drawImage(
-          img,
-          0,
-          0,
-          width,
-          height
-        );
-
-
-        resolve(
-          canvas.toDataURL(
-            "image/jpeg",
-            0.75
-          )
-        );
-
-      };
-
-
-      img.onerror = reject;
-
-      img.src = reader.result;
-    };
-
-
-    reader.onerror = reject;
-
-    reader.readAsDataURL(file);
-
-  });
-}
-
-
-/* =========================================================
-   WERKZEUG SPEICHERN
-========================================================= */
-
-async function saveTool(){
-
-  const name =
-    document.getElementById("toolName")
-      .value
-      .trim();
-
-  const description =
-    document.getElementById("toolDescription")
-      .value
-      .trim();
-
-  const category =
-    document.getElementById("toolCategory")
-      .value;
-
-  const owner =
-    document.getElementById("toolOwner")
-      .value
-      .trim();
-
-  const photo =
-    document.getElementById("photoInput")
-      .files[0];
-
+  const photo=document
+    .getElementById("editPhotoInput")
+    .files[0];
 
   if(!name){
-
-    showMessage(
-      "Bitte einen Werkzeugnamen eingeben.",
-      "error"
-    );
-
+    showMessage("Bitte einen Werkzeugnamen eingeben.","error");
     return;
   }
-
 
   if(!owner){
-
-    showMessage(
-      "Bitte Besitzer eingeben.",
-      "error"
-    );
-
+    showMessage("Bitte Besitzer eingeben.","error");
     return;
   }
 
-
-  const button =
-    event?.target;
-
-
-  if(button){
-
-    button.disabled = true;
-    button.textContent = "Speichere...";
-  }
-
+  button.disabled=true;
+  button.textContent="Speichere...";
 
   try{
-
-    let image_url = "";
-
+    const changes={
+      name,
+      description,
+      category,
+      owner
+    };
 
     if(photo){
-
-      image_url =
-        await resizeImage(photo);
-
+      changes.image_url=await resizeImage(photo);
     }
 
+    const {error}=await db
+      .from("tools")
+      .update(changes)
+      .eq("id",id)
+      .eq("group_code",S.group);
 
-    const { error } =
-      await db
-        .from("tools")
-        .insert({
+    if(error)throw error;
 
-          group_code:S.group,
-
-          name:name,
-
-          category:category,
-
-          owner:owner,
-
-          description:description,
-
-          image_url:image_url,
-
-          borrower:null,
-
-          borrowed_at:null,
-
-          due_date:null
-
-        });
-
-
-    if(error) throw error;
-
-
-    showMessage(
-      "Werkzeug gespeichert ✓",
-      "success"
-    );
-
-
+    showMessage("Werkzeug geändert ✓","success");
     home();
 
-
   }catch(error){
-
     console.error(error);
 
     showMessage(
-      "Werkzeug konnte nicht gespeichert werden: " +
+      "Änderungen konnten nicht gespeichert werden: "+
       error.message,
       "error"
     );
 
-    if(button){
-
-      button.disabled = false;
-      button.textContent = "💾 Werkzeug speichern";
-
-    }
-
+    button.disabled=false;
+    button.textContent="💾 Änderungen speichern";
   }
 }
 
+async function deleteTool(id){
+  const {data:tool,error}=await db
+    .from("tools")
+    .select("id,name,group_code")
+    .eq("id",id)
+    .eq("group_code",S.group)
+    .single();
 
-/* =========================================================
-   AUSLEIHEN
-========================================================= */
+  if(error||!tool){
+    showMessage("Werkzeug konnte nicht gefunden werden.","error");
+    return;
+  }
+
+  const ok=confirm(
+    `Möchtest du „${tool.name}“ wirklich löschen?\n\n`+
+    `Das Werkzeug wird aus der Gruppe entfernt.`
+  );
+
+  if(!ok)return;
+
+  const {error:deleteError}=await db
+    .from("tools")
+    .delete()
+    .eq("id",id)
+    .eq("group_code",S.group);
+
+  if(deleteError){
+    console.error(deleteError);
+
+    showMessage(
+      "Werkzeug konnte nicht gelöscht werden: "+
+      deleteError.message,
+      "error"
+    );
+
+    return;
+  }
+
+  showMessage("Werkzeug gelöscht ✓","success");
+  home();
+}
 
 async function borrowTool(id){
-
-  const { data, error } =
-    await db
-      .from("tools")
-      .select("*")
-      .eq("id",id)
-      .eq("group_code",S.group)
-      .single();
-
+  const {data,error}=await db
+    .from("tools")
+    .select("*")
+    .eq("id",id)
+    .eq("group_code",S.group)
+    .single();
 
   if(error){
-
     showMessage(
       "Werkzeug konnte nicht gefunden werden.",
       "error"
     );
-
     return;
   }
 
+  const borrower=prompt(
+    "Wer leiht das Werkzeug aus?",
+    S.name
+  );
 
-  const borrower =
-    prompt(
-      "Wer leiht das Werkzeug aus?",
-      S.name
+  if(!borrower||!borrower.trim())return;
+
+  const name=borrower.trim();
+
+  const choice=prompt(
+`Wie lange soll das Werkzeug ausgeliehen werden?
+
+1 = Ohne Rückgabedatum
+2 = Bis heute
+3 = Bis morgen
+4 = Bis in 3 Tagen
+5 = Bis in 1 Woche
+6 = Eigenes Datum (TT.MM.JJJJ)`,
+    "1"
+  );
+
+  if(choice===null)return;
+
+  let dueDate=null;
+
+  const today=new Date();
+  today.setHours(0,0,0,0);
+
+  if(choice==="2"){
+    dueDate=toDateValue(today);
+
+  }else if(choice==="3"){
+    const d=new Date(today);
+    d.setDate(d.getDate()+1);
+    dueDate=toDateValue(d);
+
+  }else if(choice==="4"){
+    const d=new Date(today);
+    d.setDate(d.getDate()+3);
+    dueDate=toDateValue(d);
+
+  }else if(choice==="5"){
+    const d=new Date(today);
+    d.setDate(d.getDate()+7);
+    dueDate=toDateValue(d);
+
+  }else if(choice==="6"){
+
+    const raw=prompt(
+      "Rückgabedatum eingeben (TT.MM.JJJJ)"
     );
 
+    if(!raw)return;
 
-  if(!borrower || !borrower.trim()) return;
+    dueDate=parseGermanDate(raw);
 
+    if(!dueDate){
+      showMessage(
+        "Ungültiges Datum. Bitte TT.MM.JJJJ verwenden.",
+        "error"
+      );
+      return;
+    }
 
-  const name =
-    borrower.trim();
-
-
-  const { error:updateError } =
-    await db
-      .from("tools")
-      .update({
-
-        borrower:name,
-
-        borrowed_at:
-          new Date().toISOString()
-
-      })
-      .eq("id",id)
-      .eq("group_code",S.group);
-
-
-  if(updateError){
+  }else if(choice!=="1"){
 
     showMessage(
-      "Ausleihen fehlgeschlagen.",
+      "Bitte 1 bis 6 auswählen.",
       "error"
     );
 
     return;
   }
 
+  const borrowedAt=new Date().toISOString();
 
-  await db
-    .from("loan_history")
-    .insert({
-
-      group_code:S.group,
-
-      tool_id:id,
-
-      tool_name:data.name,
-
+  const {error:updateError}=await db
+    .from("tools")
+    .update({
       borrower:name,
+      borrowed_at:borrowedAt,
+      due_date:dueDate
+    })
+    .eq("id",id)
+    .eq("group_code",S.group);
 
-      borrowed_at:
-        new Date().toISOString(),
+  if(updateError){
+    showMessage(
+      "Ausleihen fehlgeschlagen.",
+      "error"
+    );
+    return;
+  }
 
-      due_date:null
-
-    });
-
+  await db.from("loan_history").insert({
+    group_code:S.group,
+    tool_id:id,
+    tool_name:data.name,
+    borrower:name,
+    borrowed_at:borrowedAt,
+    due_date:dueDate
+  });
 
   showMessage(
     "Werkzeug wurde ausgeliehen ✓",
     "success"
   );
 
-
   home();
 }
 
+function toDateValue(date){
+  return `${date.getFullYear()}-${
+    String(date.getMonth()+1).padStart(2,"0")
+  }-${
+    String(date.getDate()).padStart(2,"0")
+  }`;
+}
 
-/* =========================================================
-   ZURÜCKGEBEN
-========================================================= */
+function parseGermanDate(raw){
+  const m=raw.trim().match(
+    /^(\d{1,2})\.(\d{1,2})\.(\d{4})$/
+  );
+
+  if(!m)return null;
+
+  const d=Number(m[1]);
+  const mo=Number(m[2]);
+  const y=Number(m[3]);
+
+  const x=new Date(y,mo-1,d);
+
+  if(
+    x.getFullYear()!==y ||
+    x.getMonth()!==mo-1 ||
+    x.getDate()!==d
+  ){
+    return null;
+  }
+
+  return toDateValue(x);
+}
 
 async function returnTool(id){
-
-  const { data, error } =
-    await db
-      .from("tools")
-      .select("*")
-      .eq("id",id)
-      .eq("group_code",S.group)
-      .single();
-
+  const {data,error}=await db
+    .from("tools")
+    .select("*")
+    .eq("id",id)
+    .eq("group_code",S.group)
+    .single();
 
   if(error){
-
     showMessage(
       "Werkzeug konnte nicht gefunden werden.",
       "error"
     );
-
     return;
   }
 
-
-  const { error:updateError } =
-    await db
-      .from("tools")
-      .update({
-
-        borrower:null,
-
-        borrowed_at:null,
-
-        due_date:null
-
-      })
-      .eq("id",id)
-      .eq("group_code",S.group);
-
+  const {error:updateError}=await db
+    .from("tools")
+    .update({
+      borrower:null,
+      borrowed_at:null,
+      due_date:null
+    })
+    .eq("id",id)
+    .eq("group_code",S.group);
 
   if(updateError){
-
     showMessage(
       "Rückgabe fehlgeschlagen.",
       "error"
     );
-
     return;
   }
-
 
   await db
     .from("loan_history")
     .update({
-
-      returned_at:
-        new Date().toISOString()
-
+      returned_at:new Date().toISOString()
     })
     .eq("tool_id",id)
     .eq("group_code",S.group)
     .is("returned_at",null);
-
 
   showMessage(
     "Werkzeug zurückgegeben ✓",
     "success"
   );
 
-
   home();
 }
 
-
-/* =========================================================
-   PERSONEN
-========================================================= */
-
 async function people(){
+  content.innerHTML=navigation()+`
+  <div class="box">
+    <b>Dein Gruppen-Code</b>
 
-  content.innerHTML =
-    navigation() +
-
-    `
-
-    <div class="box">
-
-      <b>Dein Gruppen-Code</b>
-
-      <div class="group-code">
-        ${esc(S.group)}
-      </div>
-
-      <p class="muted">
-        Teile diesen Code mit deinen Freunden.
-        Sie können damit deiner Gruppe beitreten.
-      </p>
-
-      <button onclick="copyGroupCode()">
-        📋 Code kopieren
-      </button>
-
-      <button onclick="addPerson()">
-        ＋ Person hinzufügen
-      </button>
-
+    <div class="group-code">
+      ${esc(S.group)}
     </div>
 
-    <div class="box">
+    <p class="muted">
+      Teile diesen Code mit deinen Freunden.
+      Sie können damit deiner Gruppe beitreten.
+    </p>
 
-      <h3>Mitglieder</h3>
+    <button onclick="copyGroupCode()">
+      📋 Code kopieren
+    </button>
 
-      <div id="membersList">
-        Laden...
-      </div>
+    <button onclick="addPerson()">
+      ＋ Person hinzufügen
+    </button>
+  </div>
 
-    </div>
+  <div class="box">
+    <h3>Mitglieder</h3>
+    <div id="membersList">Laden...</div>
+  </div>`;
 
-    `;
-
-
-  const { data, error } =
-    await db
-      .from("members")
-      .select("*")
-      .eq("group_code",S.group)
-      .order("name");
-
+  const {data,error}=await db
+    .from("members")
+    .select("*")
+    .eq("group_code",S.group)
+    .order("name");
 
   if(error){
-
-    document.getElementById("membersList")
-      .innerHTML =
+    document.getElementById("membersList").innerHTML=
       `<p class="muted">${esc(error.message)}</p>`;
-
     return;
   }
 
+  const members=data||[];
 
-  const members = data || [];
-
-
-  if(!members.length){
-
-    document.getElementById("membersList")
-      .innerHTML =
-      `<p class="muted">Noch keine Mitglieder.</p>`;
-
-    return;
-  }
-
-
-  document.getElementById("membersList")
-    .innerHTML =
-    members.map(member=>`
-
-      <div class="member">
+  document.getElementById("membersList").innerHTML=
+    members.length
+    ?members.map(member=>
+      `<div class="member">
         👤 <b>${esc(member.name)}</b>
-      </div>
-
-    `).join("");
+      </div>`
+    ).join("")
+    :`<p class="muted">Noch keine Mitglieder.</p>`;
 }
 
-
 async function copyGroupCode(){
-
   try{
-
     await navigator.clipboard.writeText(S.group);
 
     showMessage(
@@ -1476,108 +1069,69 @@ async function copyGroupCode(){
   }catch(e){
 
     showMessage(
-      "Code: " + S.group,
+      "Code: "+S.group,
       "notice"
     );
-
   }
 }
 
-
 async function addPerson(){
+  const name=prompt("Name der Person");
 
-  const name =
-    prompt("Name der Person");
+  if(!name||!name.trim())return;
 
+  const cleanName=name.trim();
 
-  if(!name || !name.trim()) return;
+  const {data}=await db
+    .from("members")
+    .select("id")
+    .eq("group_code",S.group)
+    .eq("name",cleanName)
+    .limit(1);
 
-
-  const cleanName =
-    name.trim();
-
-
-  const { data } =
-    await db
-      .from("members")
-      .select("id")
-      .eq("group_code",S.group)
-      .eq("name",cleanName)
-      .limit(1);
-
-
-  if(data && data.length){
-
+  if(data&&data.length){
     showMessage(
       "Diese Person ist bereits in der Gruppe.",
       "error"
     );
-
     return;
   }
 
-
-  const { error } =
-    await db
-      .from("members")
-      .insert({
-
-        group_code:S.group,
-
-        name:cleanName
-
-      });
-
+  const {error}=await db
+    .from("members")
+    .insert({
+      group_code:S.group,
+      name:cleanName
+    });
 
   if(error){
-
     showMessage(
       "Person konnte nicht hinzugefügt werden.",
       "error"
     );
-
     return;
   }
-
 
   showMessage(
     "Person hinzugefügt ✓",
     "success"
   );
 
-
   people();
 }
 
-
-/* =========================================================
-   GRUPPE WECHSELN
-========================================================= */
-
 function changeGroup(){
+  const ok=confirm(
+    "Möchtest du die gespeicherte Gruppe verlassen?"
+  );
 
-  const ok =
-    confirm(
-      "Möchtest du die gespeicherte Gruppe verlassen?"
-    );
-
-
-  if(!ok) return;
-
+  if(!ok)return;
 
   clearUser();
-
   welcome();
 }
 
-
-/* =========================================================
-   START
-========================================================= */
-
 start();
-
 </script>
-
 </body>
 </html>
