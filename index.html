@@ -3,63 +3,505 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#111827">
-<title>Werkzeug App</title>
+<meta name="theme-color" content="#101820">
+<title>TOOLVENTAR</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#f3f4f6;color:#111827;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-header{background:#111827;color:white;padding:18px 16px;padding-top:calc(18px + env(safe-area-inset-top));font-size:22px;font-weight:700}
-main{max-width:700px;margin:auto;padding:16px;padding-bottom:40px}
-.box{background:white;border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
-h1,h2,h3{margin-top:0}
-input,textarea,select{width:100%;padding:13px;border:1px solid #d1d5db;border-radius:10px;font-size:16px;margin:6px 0 12px;background:white}
-textarea{min-height:90px;resize:vertical}
-button{border:0;border-radius:11px;padding:12px 15px;background:#111827;color:white;font-size:16px;font-weight:600;margin:4px 4px 4px 0}
-button.secondary{background:#e5e7eb;color:#111827}
-button.danger{background:#b91c1c}
-button:disabled{opacity:.55}
-label{display:block;font-size:14px;font-weight:600;margin-top:5px}
-.muted{color:#6b7280}
-.row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
-.nav{margin-bottom:12px}
-.nav button{font-size:14px}
-.tool{display:flex;gap:13px;align-items:flex-start}
-.tool-photo{width:90px;height:90px;object-fit:cover;border-radius:13px;background:#e5e7eb;flex-shrink:0}
-.tool-photo-placeholder{width:90px;height:90px;border-radius:13px;background:#e5e7eb;display:flex;align-items:center;justify-content:center;font-size:34px;flex-shrink:0}
-.tool-info{flex:1;min-width:0}
-.tool-name{font-size:18px;font-weight:700}
-.badge{display:inline-block;padding:5px 9px;border-radius:999px;font-size:12px;margin-top:7px;background:#dcfce7;color:#166534}
-.badge.loan{background:#fee2e2;color:#991b1b}
-.group-code{font-size:30px;font-weight:800;letter-spacing:3px}
-.notice{padding:11px 13px;background:#eef2ff;border-radius:10px;margin-bottom:12px}
-.error{background:#fee2e2;color:#991b1b}
-.success{background:#dcfce7;color:#166534}
-.hidden{display:none!important}
-.member{padding:10px 0;border-bottom:1px solid #eee}
-.member:last-child{border-bottom:0}
-.small{font-size:13px}
-.photo-preview{width:140px;height:140px;object-fit:cover;border-radius:14px;margin:5px 0 10px}
-.empty{text-align:center;padding:25px 10px;color:#6b7280}
-.search-wrap{position:relative}
-.search-wrap input{padding-right:45px}
-.search-icon{position:absolute;right:14px;top:17px;font-size:20px;color:#6b7280;pointer-events:none}
-.tool-actions{margin-top:9px}
+
+body{
+  margin:0;
+  background:#eef0f2;
+  color:#111827;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+header{
+  background:#101820;
+  color:white;
+  padding:14px 16px;
+  padding-top:calc(14px + env(safe-area-inset-top));
+  box-shadow:0 3px 14px rgba(0,0,0,.18);
+}
+
+.brand{
+  max-width:700px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.brand-logo{
+  width:48px;
+  height:48px;
+  border-radius:13px;
+  background:#f59e0b;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:27px;
+  box-shadow:0 2px 7px rgba(0,0,0,.25);
+  flex-shrink:0;
+}
+
+.brand-text{
+  line-height:1;
+}
+
+.brand-title{
+  font-size:23px;
+  font-weight:900;
+  letter-spacing:.8px;
+}
+
+.brand-title span{
+  color:#f59e0b;
+}
+
+.brand-subtitle{
+  margin-top:5px;
+  color:#cbd5e1;
+  font-size:12px;
+  font-weight:500;
+}
+
+main{
+  max-width:700px;
+  margin:auto;
+  padding:16px;
+  padding-bottom:40px;
+}
+
+.box{
+  background:white;
+  border-radius:16px;
+  padding:16px;
+  margin-bottom:12px;
+  box-shadow:0 2px 10px rgba(0,0,0,.06);
+}
+
+h1,h2,h3{
+  margin-top:0;
+}
+
+input,textarea,select{
+  width:100%;
+  padding:13px;
+  border:1px solid #d1d5db;
+  border-radius:10px;
+  font-size:16px;
+  margin:6px 0 12px;
+  background:white;
+}
+
+input[type="date"]{
+  min-height:48px;
+}
+
+textarea{
+  min-height:90px;
+  resize:vertical;
+}
+
+button{
+  border:0;
+  border-radius:11px;
+  padding:12px 15px;
+  background:#101820;
+  color:white;
+  font-size:16px;
+  font-weight:600;
+  margin:4px 4px 4px 0;
+}
+
+button.secondary{
+  background:#e5e7eb;
+  color:#111827;
+}
+
+button.danger{
+  background:#b91c1c;
+}
+
+button:disabled{
+  opacity:.55;
+}
+
+label{
+  display:block;
+  font-size:14px;
+  font-weight:600;
+  margin-top:5px;
+}
+
+.muted{
+  color:#6b7280;
+}
+
+.row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  align-items:center;
+}
+
+.nav{
+  margin-bottom:12px;
+}
+
+.nav button{
+  font-size:14px;
+}
+
+.tool{
+  display:flex;
+  gap:13px;
+  align-items:flex-start;
+}
+
+.tool-photo{
+  width:90px;
+  height:90px;
+  object-fit:cover;
+  border-radius:13px;
+  background:#e5e7eb;
+  flex-shrink:0;
+}
+
+.tool-photo-placeholder{
+  width:90px;
+  height:90px;
+  border-radius:13px;
+  background:#e5e7eb;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:34px;
+  flex-shrink:0;
+}
+
+.tool-info{
+  flex:1;
+  min-width:0;
+}
+
+.tool-name{
+  font-size:18px;
+  font-weight:700;
+}
+
+.badge{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:999px;
+  font-size:12px;
+  margin-top:7px;
+  background:#dcfce7;
+  color:#166534;
+}
+
+.badge.loan{
+  background:#fee2e2;
+  color:#991b1b;
+}
+
+.group-code{
+  font-size:30px;
+  font-weight:800;
+  letter-spacing:3px;
+}
+
+.notice{
+  padding:11px 13px;
+  background:#eef2ff;
+  border-radius:10px;
+  margin-bottom:12px;
+}
+
+.error{
+  background:#fee2e2;
+  color:#991b1b;
+}
+
+.success{
+  background:#dcfce7;
+  color:#166534;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.member{
+  padding:10px 0;
+  border-bottom:1px solid #eee;
+}
+
+.member:last-child{
+  border-bottom:0;
+}
+
+.small{
+  font-size:13px;
+}
+
+.photo-preview{
+  width:140px;
+  height:140px;
+  object-fit:cover;
+  border-radius:14px;
+  margin:5px 0 10px;
+}
+
+.empty{
+  text-align:center;
+  padding:25px 10px;
+  color:#6b7280;
+}
+
+.search-wrap{
+  position:relative;
+}
+
+.search-wrap input{
+  padding-right:45px;
+}
+
+.search-icon{
+  position:absolute;
+  right:14px;
+  top:17px;
+  font-size:20px;
+  color:#6b7280;
+  pointer-events:none;
+}
+
+.tool-actions{
+  margin-top:9px;
+}
+
+/* TOOLVENTAR Startbereich */
+
+.hero{
+  background:linear-gradient(145deg,#111827,#202b35);
+  color:white;
+  border-radius:20px;
+  padding:22px 18px;
+  margin-bottom:12px;
+  box-shadow:0 5px 20px rgba(0,0,0,.14);
+  overflow:hidden;
+  position:relative;
+}
+
+.hero:after{
+  content:"";
+  position:absolute;
+  width:150px;
+  height:150px;
+  border-radius:50%;
+  background:#f59e0b;
+  opacity:.12;
+  right:-50px;
+  top:-50px;
+}
+
+.hero-top{
+  position:relative;
+  z-index:1;
+}
+
+.hero-title{
+  font-size:29px;
+  font-weight:900;
+  letter-spacing:.5px;
+  margin-bottom:5px;
+}
+
+.hero-title span{
+  color:#f59e0b;
+}
+
+.hero-text{
+  color:#d1d5db;
+  font-size:14px;
+  line-height:1.45;
+  margin-bottom:18px;
+}
+
+.share-visual{
+  position:relative;
+  height:125px;
+  margin-top:4px;
+}
+
+.person{
+  position:absolute;
+  bottom:18px;
+  width:62px;
+  text-align:center;
+  font-size:45px;
+  line-height:1;
+}
+
+.person.left{
+  left:12%;
+}
+
+.person.right{
+  right:12%;
+}
+
+.toolbox{
+  position:absolute;
+  left:50%;
+  bottom:5px;
+  transform:translateX(-50%);
+  width:125px;
+  height:48px;
+  background:#111827;
+  border:3px solid #f59e0b;
+  border-radius:8px 8px 12px 12px;
+  box-shadow:0 5px 12px rgba(0,0,0,.35);
+}
+
+.toolbox:before{
+  content:"";
+  position:absolute;
+  left:31px;
+  top:-21px;
+  width:57px;
+  height:20px;
+  border:4px solid #f59e0b;
+  border-bottom:0;
+  border-radius:12px 12px 0 0;
+}
+
+.toolbox:after{
+  content:"🔧";
+  position:absolute;
+  left:42px;
+  top:5px;
+  font-size:27px;
+}
+
+.hand-tool{
+  position:absolute;
+  left:50%;
+  top:28px;
+  transform:translateX(-50%);
+  font-size:31px;
+  z-index:2;
+}
+
+.hero-slogan{
+  text-align:center;
+  font-size:13px;
+  font-weight:700;
+  color:#fbbf24;
+  letter-spacing:.4px;
+  margin-top:3px;
+}
+
+/* Ausleihbereich */
+
+.loan-date-box{
+  background:#f8fafc;
+  border:1px solid #e5e7eb;
+  border-radius:13px;
+  padding:12px;
+  margin:12px 0;
+}
+
+.loan-date-box label{
+  margin-top:0;
+}
+
+.loan-date-row{
+  display:flex;
+  gap:10px;
+}
+
+.loan-date-column{
+  flex:1;
+  min-width:0;
+}
+
+.no-due-row{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin:8px 0 4px;
+  font-size:14px;
+}
+
+.no-due-row input{
+  width:20px;
+  height:20px;
+  margin:0;
+}
+
+@media(max-width:430px){
+  .hero-title{
+    font-size:26px;
+  }
+
+  .person.left{
+    left:7%;
+  }
+
+  .person.right{
+    right:7%;
+  }
+
+  .loan-date-row{
+    flex-direction:column;
+    gap:0;
+  }
+}
 </style>
 </head>
 
 <body>
-<header>🔧 Werkzeug App</header>
+
+<header>
+  <div class="brand">
+
+    <div class="brand-logo">
+      🔧
+    </div>
+
+    <div class="brand-text">
+
+      <div class="brand-title">
+        TOOL<span>VENTAR</span>
+      </div>
+
+      <div class="brand-subtitle">
+        Werkzeug teilen. Einfach.
+      </div>
+
+    </div>
+
+  </div>
+</header>
+
 
 <main>
+
 <div id="message" class="notice hidden"></div>
+
 <div id="content"></div>
+
 </main>
 
+
 <script>
+
 const SUPABASE_URL="https://shxpltkpkjbdyvjcoktc.supabase.co";
+
 const SUPABASE_KEY="sb_publishable_5jZAPJUN2_DfMPFPBu352Q_RpfjUwPG";
 
 const db=window.supabase.createClient(
@@ -74,13 +516,21 @@ let S=loadUser();
 let currentTools=[];
 
 
+/* =========================
+   BENUTZER
+========================= */
+
 function loadUser(){
+
   try{
-    const saved=localStorage.getItem("werkzeug_app_user");
+
+    const saved=
+      localStorage.getItem("werkzeug_app_user");
 
     if(!saved)return null;
 
-    const user=JSON.parse(saved);
+    const user=
+      JSON.parse(saved);
 
     if(
       user &&
@@ -89,18 +539,21 @@ function loadUser(){
       user.name.trim() &&
       user.group.trim()
     ){
+
       return user;
     }
 
     return null;
 
   }catch(e){
+
     return null;
   }
 }
 
 
 function saveUser(){
+
   localStorage.setItem(
     "werkzeug_app_user",
     JSON.stringify(S)
@@ -109,12 +562,21 @@ function saveUser(){
 
 
 function clearUser(){
-  localStorage.removeItem("werkzeug_app_user");
+
+  localStorage.removeItem(
+    "werkzeug_app_user"
+  );
+
   S=null;
 }
 
 
+/* =========================
+   HILFSFUNKTIONEN
+========================= */
+
 function esc(value){
+
   return String(value??"")
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
@@ -124,25 +586,42 @@ function esc(value){
 }
 
 
-function showMessage(text,type="notice"){
+function showMessage(
+  text,
+  type="notice"
+){
+
   message.textContent=text;
-  message.className="notice "+type;
+
+  message.className=
+    "notice "+type;
 
   setTimeout(()=>{
-    message.className="notice hidden";
+
+    message.className=
+      "notice hidden";
+
   },3500);
 }
 
+
+/* =========================
+   START
+========================= */
 
 async function start(){
 
   if(S && S.name && S.group){
 
-    const ok=await checkConnection();
+    const ok=
+      await checkConnection();
 
     if(ok){
+
       await ensureCurrentMember();
+
       home();
+
       return;
     }
   }
@@ -150,6 +629,10 @@ async function start(){
   welcome();
 }
 
+
+/* =========================
+   VERBINDUNG
+========================= */
 
 async function checkConnection(){
 
@@ -178,9 +661,54 @@ async function checkConnection(){
 }
 
 
+/* =========================
+   WILLKOMMEN
+========================= */
+
 function welcome(){
 
   content.innerHTML=`
+
+  <div class="hero">
+
+    <div class="hero-top">
+
+      <div class="hero-title">
+        TOOL<span>VENTAR</span>
+      </div>
+
+      <div class="hero-text">
+        Dein gemeinsames Werkzeug-Inventar.
+        Behalte den Überblick darüber, wem welches Werkzeug gehört
+        und wer es gerade ausgeliehen hat.
+      </div>
+
+      <div class="share-visual">
+
+        <div class="person left">
+          👨🏻
+        </div>
+
+        <div class="person right">
+          👨🏼
+        </div>
+
+        <div class="hand-tool">
+          🔧
+        </div>
+
+        <div class="toolbox"></div>
+
+      </div>
+
+      <div class="hero-slogan">
+        WERKZEUG TEILEN. EINFACH.
+      </div>
+
+    </div>
+
+  </div>
+
 
   <div class="box">
 
@@ -211,11 +739,15 @@ function welcome(){
       👥 Gruppe beitreten
     </button>
 
-    <button id="createButton" class="secondary">
+    <button
+      id="createButton"
+      class="secondary"
+    >
       ＋ Neue Gruppe erstellen
     </button>
 
   </div>
+
 
   <div class="box">
 
@@ -228,30 +760,49 @@ function welcome(){
     </p>
 
   </div>
+
   `;
 
-  document.getElementById("joinButton").onclick=()=>{
-    joinGroup(false);
-  };
 
-  document.getElementById("createButton").onclick=()=>{
-    joinGroup(true);
-  };
+  document
+    .getElementById("joinButton")
+    .onclick=()=>{
+
+      joinGroup(false);
+
+    };
+
+
+  document
+    .getElementById("createButton")
+    .onclick=()=>{
+
+      joinGroup(true);
+
+    };
 }
 
+
+/* =========================
+   GRUPPE
+========================= */
 
 async function joinGroup(createNew){
 
   const name=
-    document.getElementById("nameInput")
-    .value
-    .trim();
+    document
+      .getElementById("nameInput")
+      .value
+      .trim();
+
 
   let group=
-    document.getElementById("groupInput")
-    .value
-    .trim()
-    .toUpperCase();
+    document
+      .getElementById("groupInput")
+      .value
+      .trim()
+      .toUpperCase();
+
 
   if(!name){
 
@@ -267,7 +818,9 @@ async function joinGroup(createNew){
   if(createNew){
 
     if(!group){
+
       group=createGroupCode();
+
     }
 
   }else{
@@ -282,11 +835,13 @@ async function joinGroup(createNew){
       return;
     }
 
+
     const {data,error}=await db
       .from("members")
       .select("id")
       .eq("group_code",group)
       .limit(1);
+
 
     if(error){
 
@@ -299,6 +854,7 @@ async function joinGroup(createNew){
 
       return;
     }
+
 
     if(!data || data.length===0){
 
@@ -317,15 +873,21 @@ async function joinGroup(createNew){
     group:group
   };
 
+
   saveUser();
 
-  const ok=await ensureCurrentMember();
+
+  const ok=
+    await ensureCurrentMember();
+
 
   if(!ok){
 
     clearUser();
+
     return;
   }
+
 
   home();
 }
@@ -338,6 +900,7 @@ function createGroupCode(){
 
   let result="";
 
+
   for(let i=0;i<6;i++){
 
     result+=
@@ -348,9 +911,14 @@ function createGroupCode(){
       ];
   }
 
+
   return result;
 }
 
+
+/* =========================
+   MITGLIED
+========================= */
 
 async function ensureCurrentMember(){
 
@@ -363,22 +931,30 @@ async function ensureCurrentMember(){
       .eq("name",S.name)
       .limit(1);
 
+
     if(error)throw error;
 
 
     if(!data || data.length===0){
 
-      const result=await db
-        .from("members")
-        .insert({
-          group_code:S.group,
-          name:S.name
-        });
+      const result=
+        await db
+          .from("members")
+          .insert({
+
+            group_code:S.group,
+            name:S.name
+
+          });
+
 
       if(result.error){
+
         throw result.error;
+
       }
     }
+
 
     return true;
 
@@ -396,6 +972,10 @@ async function ensureCurrentMember(){
   }
 }
 
+
+/* =========================
+   NAVIGATION
+========================= */
 
 function navigation(){
 
@@ -423,14 +1003,36 @@ function navigation(){
     </div>
 
   </div>
+
   `;
 }
 
+
+/* =========================
+   HOME
+========================= */
 
 async function home(){
 
   content.innerHTML=
     navigation()+`
+
+  <div class="hero">
+
+    <div class="hero-title">
+      TOOL<span>VENTAR</span>
+    </div>
+
+    <div class="hero-text">
+      Gemeinsam Werkzeuge verwalten, teilen und wiederfinden.
+    </div>
+
+    <div class="hero-slogan">
+      WERKZEUG TEILEN. EINFACH.
+    </div>
+
+  </div>
+
 
   <div class="box">
 
@@ -481,6 +1083,7 @@ async function home(){
     </div>
 
   </div>
+
   `;
 
 
@@ -508,6 +1111,7 @@ async function home(){
         </p>
 
       </div>
+
     `;
 
     return;
@@ -515,6 +1119,7 @@ async function home(){
 
 
   currentTools=data||[];
+
 
   renderTools(currentTools);
 
@@ -527,6 +1132,10 @@ async function home(){
     );
 }
 
+
+/* =========================
+   SUCHE
+========================= */
 
 function filterTools(query){
 
@@ -560,6 +1169,7 @@ function filterTools(query){
           .includes(q)
 
       );
+
     });
 
 
@@ -569,6 +1179,10 @@ function filterTools(query){
   );
 }
 
+
+/* =========================
+   WERKZEUGE ANZEIGEN
+========================= */
 
 function renderTools(
   tools,
@@ -601,18 +1215,21 @@ function renderTools(
 
         ${
           searchQuery
+
           ? `<button
                class="secondary"
                onclick="clearToolSearch()"
              >
                Suche löschen
              </button>`
+
           : `<button onclick="addTool()">
                ＋ Erstes Werkzeug hinzufügen
              </button>`
         }
 
       </div>
+
     `;
 
     return;
@@ -651,8 +1268,10 @@ function renderTools(
               tool.due_date+"T23:59:59"
             );
 
+
           const today=
             new Date();
+
 
           today.setHours(
             0,0,0,0
@@ -668,16 +1287,60 @@ function renderTools(
             );
 
 
+          let startText="";
+
+
+          if(tool.borrowed_at){
+
+            startText=
+              new Date(
+                tool.borrowed_at
+              )
+              .toLocaleDateString(
+                "de-DE"
+              );
+
+          }
+
+
           dueText=
+
             due<today
 
             ? `<br>
                ⚠️ Rückgabe überfällig
+               ${
+                 startText
+                 ? ` · ${startText}`
+                 : ""
+               }
                (bis ${formatted})`
 
             : `<br>
-               📅 Rückgabe bis
-               ${formatted}`;
+               📅 ${
+                 startText
+                 ? `${startText} – `
+                 : ""
+               }bis ${formatted}`;
+
+        }else{
+
+          if(tool.borrowed_at){
+
+            const startText=
+              new Date(
+                tool.borrowed_at
+              )
+              .toLocaleDateString(
+                "de-DE"
+              );
+
+            dueText=
+              `<br>
+               📅 Seit ${startText}
+               · ohne Rückgabedatum`;
+          }
+
         }
 
 
@@ -691,6 +1354,7 @@ function renderTools(
             ${dueText}
 
           </span>
+
         `;
 
       }else{
@@ -798,6 +1462,7 @@ function renderTools(
           </div>
 
         </div>
+
       `;
 
     }).join("");
@@ -811,15 +1476,23 @@ function clearToolSearch(){
       "toolSearch"
     );
 
+
   if(input){
+
     input.value="";
+
   }
+
 
   renderTools(
     currentTools
   );
 }
 
+
+/* =========================
+   WERKZEUG HINZUFÜGEN
+========================= */
 
 function addTool(){
 
@@ -839,6 +1512,7 @@ function addTool(){
       accept="image/*"
       capture="environment"
     >
+
 
     <div id="photoPreview"></div>
 
@@ -897,6 +1571,7 @@ function addTool(){
     </button>
 
   </div>
+
   `;
 
 
@@ -932,6 +1607,7 @@ function previewPhoto(event){
          src="${reader.result}"
          alt="Vorschau"
        >`;
+
   };
 
 
@@ -1015,6 +1691,7 @@ function resizeImage(file){
               0.75
             )
           );
+
         };
 
 
@@ -1022,12 +1699,14 @@ function resizeImage(file){
 
         img.src=
           reader.result;
+
       };
 
 
       reader.onerror=reject;
 
       reader.readAsDataURL(file);
+
     }
   );
 }
@@ -1113,9 +1792,8 @@ async function saveTool(){
     if(photo){
 
       image_url=
-        await resizeImage(
-          photo
-        );
+        await resizeImage(photo);
+
     }
 
 
@@ -1165,6 +1843,10 @@ async function saveTool(){
   }
 }
 
+
+/* =========================
+   WERKZEUG BEARBEITEN
+========================= */
 
 async function editTool(id){
 
@@ -1302,6 +1984,7 @@ async function editTool(id){
     </button>
 
   </div>
+
   `;
 
 
@@ -1339,6 +2022,7 @@ function previewEditPhoto(event){
          src="${reader.result}"
          alt="Neue Vorschau"
        >`;
+
   };
 
 
@@ -1421,19 +2105,20 @@ async function updateTool(id){
   try{
 
     const changes={
+
       name:name,
       description:description,
       category:category,
       owner:owner
+
     };
 
 
     if(photo){
 
       changes.image_url=
-        await resizeImage(
-          photo
-        );
+        await resizeImage(photo);
+
     }
 
 
@@ -1473,6 +2158,10 @@ async function updateTool(id){
   }
 }
 
+
+/* =========================
+   LÖSCHEN
+========================= */
 
 async function deleteTool(id){
 
@@ -1537,6 +2226,10 @@ async function deleteTool(id){
 }
 
 
+/* =========================
+   AUSLEIHEN
+========================= */
+
 async function borrowTool(id){
 
   const {data,error}=
@@ -1559,125 +2252,222 @@ async function borrowTool(id){
   }
 
 
-  const borrower=
-    prompt(
-      "Wer leiht das Werkzeug aus?",
-      S.name
-    );
-
-
-  if(
-    !borrower ||
-    !borrower.trim()
-  ){
-    return;
-  }
-
-
-  const name=
-    borrower.trim();
-
-
-  const choice=
-    prompt(
-      "Wie lange soll das Werkzeug ausgeliehen werden?\n\n"+
-      "1 = Ohne Rückgabedatum\n"+
-      "2 = Bis heute\n"+
-      "3 = Bis morgen\n"+
-      "4 = Bis in 3 Tagen\n"+
-      "5 = Bis in 1 Woche\n"+
-      "6 = Eigenes Datum (TT.MM.JJJJ)",
-      "1"
-    );
-
-
-  if(choice===null)return;
-
-
-  let dueDate=null;
+  /*
+    Neues Ausleihfenster direkt auf der Seite.
+    Keine Zahlen 1-6 mehr.
+  */
 
   const today=
     new Date();
 
-  today.setHours(
-    0,0,0,0
+
+  const todayValue=
+    toDateValue(today);
+
+
+  content.innerHTML=
+    navigation()+`
+
+  <div class="box">
+
+    <h2>📦 Werkzeug ausleihen</h2>
+
+    <p class="muted">
+      <b>${esc(data.name)}</b>
+    </p>
+
+
+    <label>
+      Wer leiht das Werkzeug aus?
+    </label>
+
+    <input
+      id="borrowerInput"
+      value="${esc(S.name)}"
+      placeholder="Name"
+    >
+
+
+    <div class="loan-date-box">
+
+      <div class="loan-date-row">
+
+        <div class="loan-date-column">
+
+          <label>
+            Von
+          </label>
+
+          <input
+            id="borrowFrom"
+            type="date"
+            value="${todayValue}"
+          >
+
+        </div>
+
+
+        <div class="loan-date-column">
+
+          <label>
+            Bis
+          </label>
+
+          <input
+            id="borrowUntil"
+            type="date"
+            value="${todayValue}"
+          >
+
+        </div>
+
+      </div>
+
+
+      <label class="no-due-row">
+
+        <input
+          id="noDueDate"
+          type="checkbox"
+        >
+
+        <span>
+          Ohne Rückgabedatum
+        </span>
+
+      </label>
+
+    </div>
+
+
+    <button
+      id="confirmBorrowButton"
+      onclick="confirmBorrow('${id}')"
+    >
+      📦 Werkzeug ausleihen
+    </button>
+
+
+    <button
+      class="secondary"
+      onclick="home()"
+    >
+      Abbrechen
+    </button>
+
+  </div>
+
+  `;
+
+
+  const untilInput=
+    document.getElementById(
+      "borrowUntil"
+    );
+
+
+  const noDueDate=
+    document.getElementById(
+      "noDueDate"
+    );
+
+
+  noDueDate.addEventListener(
+    "change",
+    ()=>{
+
+      untilInput.disabled=
+        noDueDate.checked;
+
+      untilInput.style.opacity=
+        noDueDate.checked
+        ? ".5"
+        : "1";
+
+    }
   );
 
 
-  if(choice==="2"){
+  document
+    .getElementById("borrowFrom")
+    .addEventListener(
+      "change",
+      ()=>{
 
-    dueDate=
-      toDateValue(
-        today
-      );
+        const from=
+          document.getElementById(
+            "borrowFrom"
+          ).value;
 
-  }else if(choice==="3"){
 
-    const d=
-      new Date(today);
+        if(
+          from &&
+          !noDueDate.checked
+        ){
 
-    d.setDate(
-      d.getDate()+1
+          untilInput.min=from;
+
+
+          if(
+            untilInput.value &&
+            untilInput.value<from
+          ){
+
+            untilInput.value=from;
+
+          }
+        }
+
+      }
     );
 
-    dueDate=
-      toDateValue(d);
 
-  }else if(choice==="4"){
+  untilInput.min=
+    todayValue;
+}
 
-    const d=
-      new Date(today);
 
-    d.setDate(
-      d.getDate()+3
+/* =========================
+   AUSLEIHE BESTÄTIGEN
+========================= */
+
+async function confirmBorrow(id){
+
+  const button=
+    document.getElementById(
+      "confirmBorrowButton"
     );
 
-    dueDate=
-      toDateValue(d);
 
-  }else if(choice==="5"){
-
-    const d=
-      new Date(today);
-
-    d.setDate(
-      d.getDate()+7
-    );
-
-    dueDate=
-      toDateValue(d);
-
-  }else if(choice==="6"){
-
-    const raw=
-      prompt(
-        "Rückgabedatum eingeben (TT.MM.JJJJ)"
-      );
+  const borrower=
+    document
+      .getElementById("borrowerInput")
+      .value
+      .trim();
 
 
-    if(!raw)return;
+  const from=
+    document
+      .getElementById("borrowFrom")
+      .value;
 
 
-    dueDate=
-      parseGermanDate(
-        raw
-      );
+  const until=
+    document
+      .getElementById("borrowUntil")
+      .value;
 
 
-    if(!dueDate){
+  const noDueDate=
+    document
+      .getElementById("noDueDate")
+      .checked;
 
-      showMessage(
-        "Ungültiges Datum. Bitte TT.MM.JJJJ verwenden.",
-        "error"
-      );
 
-      return;
-    }
-
-  }else if(choice!=="1"){
+  if(!borrower){
 
     showMessage(
-      "Bitte 1 bis 6 auswählen.",
+      "Bitte Namen eingeben.",
       "error"
     );
 
@@ -1685,66 +2475,163 @@ async function borrowTool(id){
   }
 
 
-  const borrowedAt=
-    new Date().toISOString();
+  if(!from){
+
+    showMessage(
+      "Bitte ein Startdatum auswählen.",
+      "error"
+    );
+
+    return;
+  }
 
 
-  const {error:updateError}=
-    await db
-      .from("tools")
-      .update({
+  if(
+    !noDueDate &&
+    !until
+  ){
 
-        borrower:name,
-        borrowed_at:borrowedAt,
-        due_date:dueDate
+    showMessage(
+      "Bitte ein Rückgabedatum auswählen.",
+      "error"
+    );
 
-      })
-      .eq("id",id)
-      .eq("group_code",S.group);
+    return;
+  }
 
 
-  if(updateError){
+  if(
+    !noDueDate &&
+    until<from
+  ){
+
+    showMessage(
+      "Das Rückgabedatum darf nicht vor dem Startdatum liegen.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  button.disabled=true;
+
+  button.textContent=
+    "Speichere...";
+
+
+  try{
+
+    /*
+      Das ausgewählte Von-Datum wird als borrowed_at
+      gespeichert. Dadurch bleibt die bestehende
+      Datenbankstruktur und Historie erhalten.
+    */
+
+    const borrowedAt=
+      new Date(
+        from+"T12:00:00"
+      ).toISOString();
+
+
+    const dueDate=
+      noDueDate
+      ? null
+      : until;
+
+
+    const {error:updateError}=
+      await db
+        .from("tools")
+        .update({
+
+          borrower:borrower,
+          borrowed_at:borrowedAt,
+          due_date:dueDate
+
+        })
+        .eq("id",id)
+        .eq("group_code",S.group);
+
+
+    if(updateError){
+
+      throw updateError;
+
+    }
+
+
+    const {data:tool,error:toolError}=
+      await db
+        .from("tools")
+        .select("name")
+        .eq("id",id)
+        .eq("group_code",S.group)
+        .single();
+
+
+    if(toolError){
+
+      console.error(toolError);
+
+    }
+
+
+    const {error:historyError}=
+      await db
+        .from("loan_history")
+        .insert({
+
+          group_code:S.group,
+          tool_id:id,
+          tool_name:
+            tool
+            ? tool.name
+            : "Werkzeug",
+          borrower:borrower,
+          borrowed_at:borrowedAt,
+          due_date:dueDate
+
+        });
+
+
+    if(historyError){
+
+      console.error(historyError);
+
+    }
+
+
+    showMessage(
+      "Werkzeug wurde ausgeliehen ✓",
+      "success"
+    );
+
+
+    home();
+
+  }catch(error){
+
+    console.error(error);
 
     showMessage(
       "Ausleihen fehlgeschlagen: "+
-      updateError.message,
+      error.message,
       "error"
     );
 
-    return;
+
+    button.disabled=false;
+
+    button.textContent=
+      "📦 Werkzeug ausleihen";
   }
-
-
-  const {error:historyError}=
-    await db
-      .from("loan_history")
-      .insert({
-
-        group_code:S.group,
-        tool_id:id,
-        tool_name:data.name,
-        borrower:name,
-        borrowed_at:borrowedAt,
-        due_date:dueDate
-
-      });
-
-
-  if(historyError){
-
-    console.error(historyError);
-  }
-
-
-  showMessage(
-    "Werkzeug wurde ausgeliehen ✓",
-    "success"
-  );
-
-
-  home();
 }
 
+
+/* =========================
+   DATUM
+========================= */
 
 function toDateValue(date){
 
@@ -1753,6 +2640,7 @@ function toDateValue(date){
   ).padStart(2,"0")}-${String(
     date.getDate()
   ).padStart(2,"0")}`;
+
 }
 
 
@@ -1772,8 +2660,10 @@ function parseGermanDate(raw){
   const d=
     Number(m[1]);
 
+
   const mo=
     Number(m[2]);
+
 
   const y=
     Number(m[3]);
@@ -1792,13 +2682,19 @@ function parseGermanDate(raw){
     x.getMonth()!==mo-1 ||
     x.getDate()!==d
   ){
+
     return null;
+
   }
 
 
   return toDateValue(x);
 }
 
+
+/* =========================
+   RÜCKGABE
+========================= */
 
 async function returnTool(id){
 
@@ -1851,8 +2747,10 @@ async function returnTool(id){
   await db
     .from("loan_history")
     .update({
+
       returned_at:
         new Date().toISOString()
+
     })
     .eq("tool_id",id)
     .eq("group_code",S.group)
@@ -1868,6 +2766,10 @@ async function returnTool(id){
   home();
 }
 
+
+/* =========================
+   PERSONEN
+========================= */
 
 async function people(){
 
@@ -1907,6 +2809,7 @@ async function people(){
     </div>
 
   </div>
+
   `;
 
 
@@ -1962,6 +2865,7 @@ async function copyGroupCode(){
       S.group
     );
 
+
     showMessage(
       "Gruppencode kopiert ✓",
       "success"
@@ -1989,7 +2893,9 @@ async function addPerson(){
     !name ||
     !name.trim()
   ){
+
     return;
+
   }
 
 
@@ -2052,6 +2958,10 @@ async function addPerson(){
 }
 
 
+/* =========================
+   GRUPPE WECHSELN
+========================= */
+
 function changeGroup(){
 
   const ok=
@@ -2069,7 +2979,12 @@ function changeGroup(){
 }
 
 
+/* =========================
+   APP STARTEN
+========================= */
+
 start();
+
 </script>
 
 </body>
