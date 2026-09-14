@@ -2,415 +2,73 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#101820">
 <title>TOOLVENTAR</title>
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 *{box-sizing:border-box}
-
-body{
-margin:0;
-background:#eef0f2;
-color:#111827;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
-}
-
-header{
-background:#101820;
-color:#fff;
-padding:10px 16px;
-padding-top:calc(10px + env(safe-area-inset-top));
-box-shadow:0 3px 14px rgba(0,0,0,.18)
-}
-
-.brand{
-max-width:700px;
-margin:auto;
-display:flex;
-align-items:center;
-gap:12px
-}
-
-.brand-logo{
-width:58px;
-height:58px;
-border-radius:14px;
-object-fit:cover;
-flex-shrink:0;
-background:#111
-}
-
-.brand-title{
-font-size:23px;
-font-weight:900;
-letter-spacing:.8px;
-line-height:1
-}
-
-.brand-title span{color:#f59e0b}
-
-.brand-subtitle{
-margin-top:6px;
-color:#cbd5e1;
-font-size:12px;
-font-weight:500
-}
-
-main{
-max-width:700px;
-margin:auto;
-padding:16px;
-padding-bottom:40px
-}
-
-.box{
-background:#fff;
-border-radius:16px;
-padding:16px;
-margin-bottom:12px;
-box-shadow:0 2px 10px rgba(0,0,0,.06)
-}
-
+body{margin:0;background:#eef0f2;color:#111827;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{background:#101820;color:#fff;padding:10px 16px;padding-top:calc(10px + env(safe-area-inset-top));box-shadow:0 3px 14px #0003}
+.brand{max-width:700px;margin:auto;display:flex;align-items:center;gap:12px}
+.brand-logo{width:58px;height:58px;border-radius:14px;object-fit:cover;flex-shrink:0}
+.brand-title{font-size:23px;font-weight:900;letter-spacing:.8px}
+.brand-title span,.hero-title span{color:#f59e0b}
+.brand-subtitle{margin-top:5px;color:#cbd5e1;font-size:12px}
+main{max-width:700px;margin:auto;padding:16px 16px 40px}
+.box{background:#fff;border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:0 2px 10px #0000000f}
 h1,h2,h3{margin-top:0}
-
-input,textarea,select{
-width:100%;
-padding:13px;
-border:1px solid #d1d5db;
-border-radius:10px;
-font-size:16px;
-margin:6px 0 12px;
-background:#fff
-}
-
-input[type=date]{min-height:48px}
-
-textarea{
-min-height:90px;
-resize:vertical
-}
-
-button{
-border:0;
-border-radius:11px;
-padding:12px 15px;
-background:#101820;
-color:#fff;
-font-size:16px;
-font-weight:600;
-margin:4px 4px 4px 0
-}
-
-button.secondary{
-background:#e5e7eb;
-color:#111827
-}
-
+input,textarea,select{width:100%;padding:13px;border:1px solid #d1d5db;border-radius:10px;font-size:16px;margin:6px 0 12px;background:#fff}
+textarea{min-height:90px;resize:vertical}
+button{border:0;border-radius:11px;padding:12px 15px;background:#101820;color:#fff;font-size:16px;font-weight:600;margin:4px 4px 4px 0}
+button.secondary{background:#e5e7eb;color:#111827}
 button.danger{background:#b91c1c}
-
 button:disabled{opacity:.55}
-
-label{
-display:block;
-font-size:14px;
-font-weight:600;
-margin-top:5px
-}
-
+label{display:block;font-size:14px;font-weight:600;margin-top:5px}
 .muted{color:#6b7280}
-
-.row{
-display:flex;
-flex-wrap:wrap;
-gap:6px;
-align-items:center
-}
-
-.nav{margin-bottom:12px}
-
-.nav button{font-size:14px}
-
-.tool{
-display:flex;
-gap:13px;
-align-items:flex-start
-}
-
-.tool-photo,
-.tool-photo-placeholder{
-width:90px;
-height:90px;
-border-radius:13px;
-flex-shrink:0
-}
-
-.tool-photo{
-object-fit:cover;
-background:#e5e7eb
-}
-
-.tool-photo-placeholder{
-background:#e5e7eb;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:34px
-}
-
-.tool-info{
-flex:1;
-min-width:0
-}
-
-.tool-name{
-font-size:18px;
-font-weight:700
-}
-
-.badge{
-display:inline-block;
-padding:5px 9px;
-border-radius:999px;
-font-size:12px;
-margin-top:7px;
-background:#dcfce7;
-color:#166534
-}
-
-.badge.loan{
-background:#fee2e2;
-color:#991b1b
-}
-
-.group-code{
-font-size:30px;
-font-weight:800;
-letter-spacing:3px
-}
-
-.notice{
-padding:11px 13px;
-background:#eef2ff;
-border-radius:10px;
-margin-bottom:12px
-}
-
-.error{
-background:#fee2e2;
-color:#991b1b
-}
-
-.success{
-background:#dcfce7;
-color:#166534
-}
-
-.hidden{display:none!important}
-
-.member{
-padding:10px 0;
-border-bottom:1px solid #eee
-}
-
-.member:last-child{border-bottom:0}
-
 .small{font-size:13px}
-
-.photo-preview{
-width:140px;
-height:140px;
-object-fit:cover;
-border-radius:14px;
-margin:5px 0 10px
-}
-
-.empty{
-text-align:center;
-padding:25px 10px;
-color:#6b7280
-}
-
-.search-wrap{position:relative}
-
-.search-wrap input{padding-right:45px}
-
-.search-icon{
-position:absolute;
-right:14px;
-top:17px;
-font-size:20px;
-color:#6b7280;
-pointer-events:none
-}
-
-.tool-actions{margin-top:9px}
-
-.owner-note{
-margin-top:8px;
-padding:8px 10px;
-border-radius:9px;
-background:#f8fafc;
-color:#6b7280;
-font-size:12px
-}
-
-.hero{
-background:linear-gradient(145deg,#111827,#202b35);
-color:#fff;
-border-radius:20px;
-padding:22px 18px;
-margin-bottom:12px;
-box-shadow:0 5px 20px rgba(0,0,0,.14);
-overflow:hidden;
-position:relative
-}
-
-.hero:after{
-content:"";
-position:absolute;
-width:150px;
-height:150px;
-border-radius:50%;
-background:#f59e0b;
-opacity:.12;
-right:-50px;
-top:-50px
-}
-
-.hero-top{
-position:relative;
-z-index:1
-}
-
-.hero-title{
-font-size:29px;
-font-weight:900;
-letter-spacing:.5px;
-margin-bottom:5px
-}
-
-.hero-title span{color:#f59e0b}
-
-.hero-text{
-color:#d1d5db;
-font-size:14px;
-line-height:1.45;
-margin-bottom:18px
-}
-
-.share-visual{
-position:relative;
-height:125px;
-margin-top:4px
-}
-
-.person{
-position:absolute;
-bottom:18px;
-width:62px;
-text-align:center;
-font-size:45px;
-line-height:1
-}
-
-.person.left{left:12%}
-.person.right{right:12%}
-
-.toolbox{
-position:absolute;
-left:50%;
-bottom:5px;
-transform:translateX(-50%);
-width:125px;
-height:48px;
-background:#111827;
-border:3px solid #f59e0b;
-border-radius:8px 8px 12px 12px;
-box-shadow:0 5px 12px rgba(0,0,0,.35)
-}
-
-.toolbox:before{
-content:"";
-position:absolute;
-left:31px;
-top:-21px;
-width:57px;
-height:20px;
-border:4px solid #f59e0b;
-border-bottom:0;
-border-radius:12px 12px 0 0
-}
-
-.toolbox:after{
-content:"🔧";
-position:absolute;
-left:42px;
-top:5px;
-font-size:27px
-}
-
-.hand-tool{
-position:absolute;
-left:50%;
-top:28px;
-transform:translateX(-50%);
-font-size:31px;
-z-index:2
-}
-
-.hero-slogan{
-text-align:center;
-font-size:13px;
-font-weight:700;
-color:#fbbf24;
-letter-spacing:.4px;
-margin-top:3px
-}
-
-.loan-date-box{
-background:#f8fafc;
-border:1px solid #e5e7eb;
-border-radius:13px;
-padding:12px;
-margin:12px 0
-}
-
-.loan-date-row{
-display:flex;
-gap:10px
-}
-
-.loan-date-column{
-flex:1;
-min-width:0
-}
-
-.no-due-row{
-display:flex;
-align-items:center;
-gap:9px;
-margin:8px 0 4px;
-font-size:14px
-}
-
-.no-due-row input{
-width:20px;
-height:20px;
-margin:0
-}
-
-@media(max-width:430px){
-.hero-title{font-size:26px}
-.person.left{left:7%}
-.person.right{right:7%}
-.loan-date-row{
-flex-direction:column;
-gap:0
-}
-}
+.row{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.nav{margin-bottom:12px}
+.nav button{font-size:13px}
+.tool{display:flex;gap:13px;align-items:flex-start}
+.tool-photo,.tool-photo-placeholder{width:90px;height:90px;border-radius:13px;flex-shrink:0}
+.tool-photo{object-fit:cover;background:#e5e7eb}
+.tool-photo-placeholder{background:#e5e7eb;display:flex;align-items:center;justify-content:center;font-size:34px}
+.tool-info{flex:1;min-width:0}
+.tool-name{font-size:18px;font-weight:700}
+.badge{display:inline-block;padding:5px 9px;border-radius:999px;font-size:12px;margin-top:7px;background:#dcfce7;color:#166534}
+.badge.loan{background:#fee2e2;color:#991b1b}
+.group-code{font-size:30px;font-weight:800;letter-spacing:3px}
+.notice{padding:11px 13px;background:#eef2ff;border-radius:10px;margin-bottom:12px}
+.error{background:#fee2e2;color:#991b1b}
+.success{background:#dcfce7;color:#166534}
+.hidden{display:none!important}
+.member{padding:10px 0;border-bottom:1px solid #eee}
+.member:last-child{border:0}
+.photo-preview{width:140px;height:140px;object-fit:cover;border-radius:14px;margin:5px 0 10px}
+.empty{text-align:center;padding:25px 10px;color:#6b7280}
+.search{position:relative}
+.search input{padding-right:45px}
+.search i{position:absolute;right:14px;top:18px;font-style:normal;color:#6b7280}
+.owner-note{margin-top:8px;padding:8px 10px;border-radius:9px;background:#f8fafc;color:#6b7280;font-size:12px}
+.hero{background:linear-gradient(145deg,#111827,#202b35);color:#fff;border-radius:20px;padding:22px 18px;margin-bottom:12px;box-shadow:0 5px 20px #00000024}
+.hero-title{font-size:29px;font-weight:900}
+.hero-text{color:#d1d5db;font-size:14px;line-height:1.45;margin:6px 0 18px}
+.share{height:110px;position:relative}
+.person{position:absolute;bottom:12px;font-size:44px}
+.left{left:10%}.right{right:10%}
+.toolbox{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:125px;height:48px;background:#111827;border:3px solid #f59e0b;border-radius:8px 8px 12px 12px}
+.toolbox:before{content:"";position:absolute;left:31px;top:-21px;width:57px;height:20px;border:4px solid #f59e0b;border-bottom:0;border-radius:12px 12px 0 0}
+.toolbox:after{content:"🔧";position:absolute;left:42px;top:5px;font-size:27px}
+.slogan{text-align:center;color:#fbbf24;font-size:13px;font-weight:700;margin-top:8px}
+.loanbox{background:#f8fafc;border:1px solid #e5e7eb;border-radius:13px;padding:12px;margin:12px 0}
+.dates{display:flex;gap:10px}
+.dates>div{flex:1}
+.nodue{display:flex;align-items:center;gap:8px;font-size:14px;margin:5px 0}
+.nodue input{width:20px;margin:0}
+.account-btn{width:100%;text-align:left}
+@media(max-width:430px){.dates{display:block}.hero-title{font-size:26px}}
 </style>
 </head>
 
@@ -421,7 +79,7 @@ gap:0
 
 <img
 class="brand-logo"
-src="data:image/jpeg;base64,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"
+src="data:image/webp;base64,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"
 alt="TOOLVENTAR Logo">
 
 <div>
@@ -433,127 +91,203 @@ alt="TOOLVENTAR Logo">
 </header>
 
 <main>
-<div id="message" class="notice hidden"></div>
-<div id="content"></div>
+<div id="msg" class="notice hidden"></div>
+<div id="app"></div>
 </main>
 
 <script>
 
-const SUPABASE_URL="https://shxpltkpkjbdyvjcoktc.supabase.co";
-const SUPABASE_KEY="sb_publishable_5jZAPJUN2_DfMPFPBu352Q_RpfjUwPG";
-
-const db=window.supabase.createClient(
-SUPABASE_URL,
-SUPABASE_KEY
+const db=supabase.createClient(
+"https://shxpltkpkjbdyvjcoktc.supabase.co",
+"sb_publishable_5jZAPJUN2_DfMPFPBu352Q_RpfjUwPG"
 );
 
-const content=document.getElementById("content");
-const message=document.getElementById("message");
+const app=document.getElementById("app");
+const msg=document.getElementById("msg");
 
 let S=loadUser();
-let currentTools=[];
+let tools=[];
+
+
+/* =========================
+   SPEICHER
+========================= */
 
 function loadUser(){
+
 try{
-const x=localStorage.getItem("werkzeug_app_user");
-if(!x)return null;
 
-const u=JSON.parse(x);
+const u=
+JSON.parse(
+localStorage.getItem(
+"werkzeug_app_user"
+)
+);
 
-return u &&
-typeof u.name==="string" &&
-typeof u.group==="string" &&
-u.name.trim() &&
-u.group.trim()
-?u:null;
+return u&&u.name&&u.group
+?u
+:null;
 
 }catch(e){
+
 return null;
-}
+
 }
 
+}
+
+
 function saveUser(){
+
 localStorage.setItem(
 "werkzeug_app_user",
 JSON.stringify(S)
 );
+
 }
+
 
 function clearUser(){
-localStorage.removeItem("werkzeug_app_user");
+
+localStorage.removeItem(
+"werkzeug_app_user"
+);
+
 S=null;
+
 }
+
 
 function esc(v){
+
 return String(v??"")
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-}
+.replace(/[&<>"']/g,x=>({
 
-function showMessage(t,type="notice"){
-message.textContent=t;
-message.className="notice "+type;
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
 
-setTimeout(()=>{
-message.className="notice hidden";
-},3500);
+}[x]));
+
 }
 
 
-/* =========================
-   WERKZEUG-BESITZER
-========================= */
+function note(text,type="notice"){
 
-function isToolCreator(tool){
+msg.textContent=text;
+msg.className="notice "+type;
 
-return !!tool &&
-!!tool.created_by &&
-String(tool.created_by).trim()===
-String(S.name||"").trim();
+clearTimeout(note.timer);
+
+note.timer=setTimeout(
+()=>msg.className="notice hidden",
+3500
+);
 
 }
 
 
 /* =========================
-   START
+   KONTO / BESITZER
 ========================= */
 
-async function start(){
+function isCreator(tool){
 
-if(S&&S.name&&S.group){
-
-const ok=await checkConnection();
-
-if(ok){
-await ensureCurrentMember();
-home();
-return;
-}
-
-}
-
-welcome();
+return !!tool?.created_by &&
+!!S?.memberId &&
+String(tool.created_by)===
+String(S.memberId);
 
 }
 
 
 /* =========================
-   VERBINDUNG
+   MITGLIED LADEN
 ========================= */
 
-async function checkConnection(){
+async function ensureMember(){
 
 try{
 
-const {error}=await db
-.from("members")
-.select("id")
-.limit(1);
+if(S.memberId){
 
-if(error)throw error;
+const r=await db
+.from("members")
+.select("id,name,group_code")
+.eq("id",S.memberId)
+.eq("group_code",S.group)
+.single();
+
+if(!r.error&&r.data){
+
+S.name=r.data.name;
+saveUser();
+
+return true;
+
+}
+
+S.memberId=null;
+
+}
+
+
+const r=await db
+.from("members")
+.select(
+"id,name,group_code,created_at"
+)
+.eq("group_code",S.group)
+.eq("name",S.name)
+.order(
+"created_at",
+{ascending:true}
+);
+
+
+if(r.error)
+throw r.error;
+
+
+/*
+Beim ersten Einstieg mit einem Namen
+wird das älteste Konto verwendet.
+Das ist wichtig für deinen bisherigen
+Fabian-Account.
+*/
+
+if(r.data?.length){
+
+S.memberId=r.data[0].id;
+S.name=r.data[0].name;
+
+saveUser();
+
+return true;
+
+}
+
+
+const n=await db
+.from("members")
+.insert({
+group_code:S.group,
+name:S.name
+})
+.select(
+"id,name,group_code"
+)
+.single();
+
+
+if(n.error)
+throw n.error;
+
+S.memberId=n.data.id;
+
+saveUser();
 
 return true;
 
@@ -561,28 +295,148 @@ return true;
 
 console.error(e);
 
-showMessage(
-"Verbindung zu Supabase fehlgeschlagen.",
+note(
+"Mitglied konnte nicht gespeichert werden: "+
+e.message,
 "error"
 );
 
 return false;
+
 }
 
 }
 
 
 /* =========================
-   WILLKOMMEN
+   ALTE WERKZEUGE ZUORDNEN
+========================= */
+
+async function migrateOldTools(){
+
+try{
+
+const old=tools.filter(
+t=>!t.created_by
+);
+
+if(!old.length)
+return;
+
+
+const r=await db
+.from("members")
+.select(
+"id,name,created_at"
+)
+.eq("group_code",S.group);
+
+
+if(r.error)
+return;
+
+
+for(const t of old){
+
+const candidates=
+(r.data||[])
+.filter(m=>
+String(m.name||"").trim()===
+String(t.owner||"").trim()
+&&
+(
+!t.created_at||
+!m.created_at||
+new Date(m.created_at)<=
+new Date(t.created_at)
+)
+)
+.sort(
+(a,b)=>
+new Date(b.created_at||0)-
+new Date(a.created_at||0)
+);
+
+
+if(candidates[0]){
+
+await db
+.from("tools")
+.update({
+created_by:candidates[0].id
+})
+.eq("id",t.id)
+.is("created_by",null);
+
+t.created_by=
+candidates[0].id;
+
+}
+
+}
+
+}catch(e){
+
+console.warn(
+"Alte Werkzeuge konnten nicht automatisch zugeordnet werden.",
+e
+);
+
+}
+
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function nav(){
+
+return`
+
+<div class="box nav">
+
+<div class="row">
+
+<button onclick="home()">
+🔧 Werkzeuge
+</button>
+
+<button onclick="people()">
+👥 Personen
+</button>
+
+<button
+class="secondary"
+onclick="accounts()">
+👤 Konto wechseln
+</button>
+
+<button
+class="secondary"
+onclick="changeGroup()">
+Gruppe wechseln
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================
+   STARTSEITE
 ========================= */
 
 function welcome(){
 
-content.innerHTML=`
+app.innerHTML=`
 
 <div class="hero">
-
-<div class="hero-top">
 
 <div class="hero-title">
 TOOL<span>VENTAR</span>
@@ -590,88 +444,75 @@ TOOL<span>VENTAR</span>
 
 <div class="hero-text">
 Dein gemeinsames Werkzeug-Inventar.
-Behalte den Überblick darüber, wem welches
-Werkzeug gehört und wer es gerade ausgeliehen hat.
+Behalte den Überblick darüber,
+wem welches Werkzeug gehört und
+wer es gerade ausgeliehen hat.
 </div>
 
-<div class="share-visual">
+<div class="share">
 
-<div class="person left">👨🏻</div>
+<div class="person left">
+👨🏻
+</div>
 
-<div class="person right">👨🏼</div>
-
-<div class="hand-tool">🔧</div>
+<div class="person right">
+👨🏼
+</div>
 
 <div class="toolbox"></div>
 
 </div>
 
-<div class="hero-slogan">
+<div class="slogan">
 WERKZEUG TEILEN. EINFACH.
 </div>
 
 </div>
 
-</div>
-
 
 <div class="box">
 
-<h2>Willkommen 👋</h2>
+<h2>
+Willkommen 👋
+</h2>
 
 <p class="muted">
-Verwalte Werkzeuge gemeinsam mit deinen Freunden.
+Verwalte Werkzeuge gemeinsam
+mit deinen Freunden.
 </p>
 
-<label>Dein Name</label>
+<label>
+Dein Name
+</label>
 
 <input
 id="nameInput"
 placeholder="z. B. Fabian"
-autocomplete="name"
 >
 
-
-<label>Gruppen-Code</label>
+<label>
+Gruppen-Code
+</label>
 
 <input
 id="groupInput"
-placeholder="z. B. ABC123"
+placeholder="z. B. WERKZEUG HN"
 autocapitalize="characters"
-autocomplete="off"
 >
 
-
-<button id="joinButton">
+<button onclick="joinGroup(false)">
 👥 Gruppe beitreten
 </button>
 
-<button id="createButton" class="secondary">
+<button
+class="secondary"
+onclick="joinGroup(true)">
 ＋ Neue Gruppe erstellen
 </button>
 
 </div>
 
-
-<div class="box">
-
-<b>Schon einmal angemeldet?</b>
-
-<p class="muted small">
-Deine Gruppe wird auf diesem iPhone gespeichert.
-Beim nächsten Öffnen musst du Name und Code
-nicht erneut eingeben.
-</p>
-
-</div>
-
 `;
-
-document.getElementById("joinButton")
-.onclick=()=>joinGroup(false);
-
-document.getElementById("createButton")
-.onclick=()=>joinGroup(true);
 
 }
 
@@ -680,75 +521,78 @@ document.getElementById("createButton")
    GRUPPE BEITRETEN
 ========================= */
 
-async function joinGroup(createNew){
+async function joinGroup(create){
 
-const name=
-document.getElementById("nameInput")
-.value
-.trim();
+let name=
+document.getElementById(
+"nameInput"
+).value.trim();
 
 let group=
-document.getElementById("groupInput")
-.value
-.trim()
+document.getElementById(
+"groupInput"
+).value.trim()
 .toUpperCase();
+
 
 if(!name){
 
-showMessage(
+note(
 "Bitte deinen Namen eingeben.",
 "error"
 );
 
 return;
+
 }
 
 
-if(createNew){
+if(create&&!group)
+group=createCode();
 
-if(!group)
-group=createGroupCode();
-
-}else{
 
 if(!group){
 
-showMessage(
+note(
 "Bitte den Gruppencode eingeben.",
 "error"
 );
 
 return;
+
 }
 
 
-const {data,error}=await db
+if(!create){
+
+const r=await db
 .from("members")
 .select("id")
 .eq("group_code",group)
 .limit(1);
 
-if(error){
 
-console.error(error);
+if(r.error){
 
-showMessage(
+note(
 "Gruppe konnte nicht geprüft werden.",
 "error"
 );
 
 return;
+
 }
 
 
-if(!data||!data.length){
+if(!r.data?.length){
 
-showMessage(
-"Diese Gruppe gibt es noch nicht. Prüfe den Code.",
+note(
+"Diese Gruppe gibt es noch nicht.",
 "error"
 );
 
 return;
+
 }
 
 }
@@ -756,28 +600,18 @@ return;
 
 S={
 name,
-group
+group,
+memberId:null
 };
 
-saveUser();
 
-if(!await ensureCurrentMember()){
-
-clearUser();
-return;
-
-}
-
+if(await ensureMember())
 home();
 
 }
 
 
-/* =========================
-   GRUPPENCODE
-========================= */
-
-function createGroupCode(){
+function createCode(){
 
 const chars=
 "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
@@ -800,99 +634,13 @@ return r;
 
 
 /* =========================
-   MITGLIED SICHERN
-========================= */
-
-async function ensureCurrentMember(){
-
-try{
-
-const {data,error}=await db
-.from("members")
-.select("id")
-.eq("group_code",S.group)
-.eq("name",S.name)
-.limit(1);
-
-if(error)throw error;
-
-
-if(!data||!data.length){
-
-const r=await db
-.from("members")
-.insert({
-group_code:S.group,
-name:S.name
-});
-
-if(r.error)throw r.error;
-
-}
-
-return true;
-
-}catch(e){
-
-console.error(e);
-
-showMessage(
-"Mitglied konnte nicht gespeichert werden: "+
-e.message,
-"error"
-);
-
-return false;
-
-}
-
-}
-
-
-/* =========================
-   NAVIGATION
-========================= */
-
-function navigation(){
-
-return`
-
-<div class="box nav">
-
-<div class="row">
-
-<button onclick="home()">
-🔧 Werkzeuge
-</button>
-
-<button onclick="people()">
-👥 Personen
-</button>
-
-<button
-class="secondary"
-onclick="changeGroup()">
-Gruppe wechseln
-</button>
-
-</div>
-
-</div>
-
-`;
-
-}
-
-
-/* =========================
-   HAUPTSEITE
+   WERKZEUGE
 ========================= */
 
 async function home(){
 
-content.innerHTML=
-
-navigation()+`
+app.innerHTML=
+nav()+`
 
 <div class="hero">
 
@@ -905,7 +653,7 @@ Gemeinsam Werkzeuge verwalten,
 teilen und wiederfinden.
 </div>
 
-<div class="hero-slogan">
+<div class="slogan">
 WERKZEUG TEILEN. EINFACH.
 </div>
 
@@ -914,7 +662,9 @@ WERKZEUG TEILEN. EINFACH.
 
 <div class="box">
 
-<b>Gruppe</b>
+<b>
+Gruppe
+</b>
 
 <div class="group-code">
 ${esc(S.group)}
@@ -933,28 +683,27 @@ Hallo ${esc(S.name)} 👋
 
 <div class="box">
 
-<label for="toolSearch">
+<label>
 Werkzeug suchen
 </label>
 
-<div class="search-wrap">
+<div class="search">
 
 <input
 id="toolSearch"
 placeholder="z. B. Hilti, Garten, Fabian..."
-autocomplete="off"
 >
 
-<span class="search-icon">
+<i>
 🔎
-</span>
+</i>
 
 </div>
 
 </div>
 
 
-<div id="toolsList">
+<div id="toolList">
 
 <div class="box muted">
 Werkzeuge werden geladen...
@@ -965,26 +714,28 @@ Werkzeuge werden geladen...
 `;
 
 
-const {data,error}=await db
+const r=await db
 .from("tools")
 .select("*")
 .eq("group_code",S.group)
-.order("created_at",{ascending:false});
+.order(
+"created_at",
+{ascending:false}
+);
 
 
-if(error){
+if(r.error){
 
-console.error(error);
-
-document.getElementById("toolsList")
-.innerHTML=`
+document.getElementById(
+"toolList"
+).innerHTML=`
 
 <div class="box">
 
 <b>Fehler</b>
 
-<p class="muted">
-${esc(error.message)}
+<p>
+${esc(r.error.message)}
 </p>
 
 </div>
@@ -996,17 +747,17 @@ return;
 }
 
 
-currentTools=data||[];
+tools=r.data||[];
 
-renderTools(currentTools);
+await migrateOldTools();
+
+renderTools(tools);
 
 
 document
 .getElementById("toolSearch")
-.addEventListener(
-"input",
-e=>filterTools(e.target.value)
-);
+.oninput=e=>
+filterTools(e.target.value);
 
 }
 
@@ -1017,96 +768,69 @@ e=>filterTools(e.target.value)
 
 function filterTools(q){
 
-q=q.trim().toLowerCase();
+q=q.toLowerCase().trim();
 
-if(!q){
-
-renderTools(currentTools);
-return;
-
-}
-
-renderTools(
-
-currentTools.filter(t=>
-
+const result=
+q
+?
+tools.filter(t=>
 [
 t.name,
 t.category,
 t.owner,
 t.description,
 t.borrower
-
-].some(v=>
-
+]
+.some(v=>
 String(v??"")
 .toLowerCase()
 .includes(q)
-
 )
+)
+:
+tools;
 
-),
-
-q
-
-);
+renderTools(result,q);
 
 }
 
 
 /* =========================
-   WERKZEUGE ANZEIGEN
+   WERKZEUGE RENDERN
 ========================= */
 
-function renderTools(
-tools,
-searchQuery=""
-){
+function renderTools(list,q=""){
 
-const list=
-document.getElementById("toolsList");
+const el=
+document.getElementById(
+"toolList"
+);
 
-if(!list)return;
+if(!el)
+return;
 
 
-if(!tools.length){
+if(!list.length){
 
-list.innerHTML=`
+el.innerHTML=`
 
 <div class="box empty">
 
 🔎
 
 <p>
-
 ${
-searchQuery
+q
 ?
-`Keine Werkzeuge für „${esc(searchQuery)}“ gefunden.`
+`Keine Werkzeuge für „${esc(q)}“ gefunden.`
 :
 "Noch keine Werkzeuge in dieser Gruppe."
 }
-
 </p>
 
-
-${
-searchQuery
-?
-
-`<button
-class="secondary"
-onclick="clearToolSearch()">
-Suche löschen
-</button>`
-
-:
-
-`<button onclick="addTool()">
-＋ Erstes Werkzeug hinzufügen
-</button>`
-
-}
+<button onclick="addTool()">
+＋ Werkzeug hinzufügen
+</button>
 
 </div>
 
@@ -1117,19 +841,17 @@ return;
 }
 
 
-list.innerHTML=
-
-tools.map(tool=>{
+el.innerHTML=
+list.map(t=>{
 
 const photo=
-
-tool.image_url
+t.image_url
 
 ?
 
 `<img
 class="tool-photo"
-src="${esc(tool.image_url)}"
+src="${esc(t.image_url)}"
 alt="">`
 
 :
@@ -1140,95 +862,34 @@ class="tool-photo-placeholder">
 </div>`;
 
 
-let loan="";
+let status;
 
 
-if(tool.borrower){
+if(t.borrower){
 
-let due="";
+status=
+`<span class="badge loan">
+📦 Ausgeliehen an
+${esc(t.borrower)}
 
-
-if(tool.due_date){
-
-const d=
-new Date(
-tool.due_date+"T23:59:59"
-);
-
-const today=new Date();
-
-today.setHours(0,0,0,0);
-
-
-const formatted=
-new Date(
-tool.due_date+"T00:00:00"
-)
-.toLocaleDateString("de-DE");
-
-
-const start=
-tool.borrowed_at
+${
+t.due_date
 ?
+`<br>📅 bis ${
 new Date(
-tool.borrowed_at
+t.due_date+"T00:00:00"
 )
 .toLocaleDateString("de-DE")
+}`
 :
-"";
-
-
-due=
-
-d<today
-
-?
-
-`<br>
-⚠️ Rückgabe überfällig
-${start?` · ${start}`:""}
-(bis ${formatted})`
-
-:
-
-`<br>
-📅
-${start?start+" – ":""}
-bis ${formatted}`;
-
+""
 }
-
-
-else if(tool.borrowed_at){
-
-due=
-
-`<br>
-📅 Seit
-${new Date(tool.borrowed_at)
-.toLocaleDateString("de-DE")}
-· ohne Rückgabedatum`;
-
-}
-
-
-loan=
-
-`<span class="badge loan">
-
-📦 Ausgeliehen an
-${esc(tool.borrower)}
-
-${due}
 
 </span>`;
 
-}
+}else{
 
-
-else{
-
-loan=
+status=
 `<span class="badge">
 ✓ Verfügbar
 </span>`;
@@ -1236,8 +897,7 @@ loan=
 }
 
 
-const creator=
-isToolCreator(tool);
+const own=isCreator(t);
 
 
 return`
@@ -1251,92 +911,71 @@ ${photo}
 <div class="tool-info">
 
 <div class="tool-name">
-${esc(tool.name)}
+${esc(t.name)}
 </div>
 
 <div class="muted">
-${esc(tool.category||"Sonstiges")}
+${esc(t.category||"Sonstiges")}
 </div>
 
 <div class="small">
 Besitzer:
 <b>
-${esc(tool.owner||"Unbekannt")}
+${esc(t.owner||"Unbekannt")}
 </b>
 </div>
 
-
 ${
-tool.description
+t.description
 ?
 `<p class="small">
-${esc(tool.description)}
+${esc(t.description)}
 </p>`
 :
 ""
 }
 
+${status}
 
-${loan}
-
-
-<div class="row tool-actions">
-
+<div class="row">
 
 ${
-tool.borrower
-
+t.borrower
 ?
-
 `<button
-onclick="returnTool('${tool.id}')">
+onclick="returnTool('${t.id}')">
 ↩️ Zurückgeben
 </button>`
-
 :
-
 `<button
-onclick="borrowTool('${tool.id}')">
+onclick="borrowTool('${t.id}')">
 📦 Ausleihen
 </button>`
-
 }
 
 
 ${
-creator
-
+own
 ?
 
-`
-
-<button
+`<button
 class="secondary"
-onclick="editTool('${tool.id}')">
+onclick="editTool('${t.id}')">
 ✏️ Bearbeiten
 </button>
 
 <button
 class="danger"
-onclick="deleteTool('${tool.id}')">
+onclick="deleteTool('${t.id}')">
 🗑️ Löschen
-</button>
-
-`
+</button>`
 
 :
 
-`
-
-<div class="owner-note">
-
-🔒 Nur der Uploader kann dieses Werkzeug
-bearbeiten oder löschen.
-
-</div>
-
-`
-
+`<div class="owner-note">
+🔒 Nur der Uploader kann dieses
+Werkzeug bearbeiten oder löschen.
+</div>`
 }
 
 </div>
@@ -1355,37 +994,19 @@ bearbeiten oder löschen.
 
 
 /* =========================
-   SUCHE LÖSCHEN
-========================= */
-
-function clearToolSearch(){
-
-const i=
-document.getElementById("toolSearch");
-
-if(i)i.value="";
-
-renderTools(currentTools);
-
-}
-
-
-/* =========================
    WERKZEUG HINZUFÜGEN
 ========================= */
 
 function addTool(){
 
-content.innerHTML=
-
-navigation()+`
+app.innerHTML=
+nav()+`
 
 <div class="box">
 
 <h2>
 Werkzeug hinzufügen
 </h2>
-
 
 <label>
 Foto
@@ -1447,21 +1068,14 @@ value="${esc(S.name)}"
 >
 
 
-<button
-id="saveToolButton"
-onclick="saveTool()">
-
+<button onclick="saveTool()">
 💾 Werkzeug speichern
-
 </button>
-
 
 <button
 class="secondary"
 onclick="home()">
-
 Abbrechen
-
 </button>
 
 </div>
@@ -1471,47 +1085,41 @@ Abbrechen
 
 document
 .getElementById("photoInput")
-.addEventListener(
-"change",
-previewPhoto
-);
+.onchange=previewPhoto;
 
 }
 
 
 /* =========================
-   FOTO VORSCHAU
+   FOTO
 ========================= */
 
 function previewPhoto(e){
 
-const f=e.target.files[0];
+const file=e.target.files[0];
 
-if(!f)return;
-
+if(!file)
+return;
 
 const r=new FileReader();
 
 r.onload=()=>{
 
-document.getElementById("photoPreview")
-.innerHTML=
+document.getElementById(
+"photoPreview"
+).innerHTML=
 
 `<img
 class="photo-preview"
 src="${r.result}"
-alt="Vorschau">`;
+alt="">`;
 
 };
 
-r.readAsDataURL(f);
+r.readAsDataURL(file);
 
 }
 
-
-/* =========================
-   FOTO VERKLEINERN
-========================= */
 
 function resizeImage(file){
 
@@ -1520,11 +1128,9 @@ return new Promise(
 
 const r=new FileReader();
 
-
 r.onload=()=>{
 
 const img=new Image();
-
 
 img.onload=()=>{
 
@@ -1539,9 +1145,7 @@ if(w>h&&w>max){
 h=Math.round(h*max/w);
 w=max;
 
-}
-
-else if(h>=w&&h>max){
+}else if(h>=w&&h>max){
 
 w=Math.round(w*max/h);
 h=max;
@@ -1549,11 +1153,11 @@ h=max;
 }
 
 
-const c=document.createElement("canvas");
+const c=
+document.createElement("canvas");
 
 c.width=w;
 c.height=h;
-
 
 c.getContext("2d")
 .drawImage(
@@ -1574,13 +1178,11 @@ c.toDataURL(
 
 };
 
-
 img.onerror=reject;
 
 img.src=r.result;
 
 };
-
 
 r.onerror=reject;
 
@@ -1592,51 +1194,25 @@ r.readAsDataURL(file);
 
 
 /* =========================
-   WERKZEUG SPEICHERN
+   SPEICHERN
 ========================= */
 
 async function saveTool(){
 
-const b=
-document.getElementById(
-"saveToolButton"
-);
-
-
 const name=
-document.getElementById(
-"toolName"
-).value.trim();
-
-
-const description=
-document.getElementById(
-"toolDescription"
-).value.trim();
-
-
-const category=
-document.getElementById(
-"toolCategory"
-).value;
-
+document
+.getElementById("toolName")
+.value.trim();
 
 const owner=
-document.getElementById(
-"toolOwner"
-).value.trim();
+document
+.getElementById("toolOwner")
+.value.trim();
 
+if(!name||!owner){
 
-const photo=
-document.getElementById(
-"photoInput"
-).files[0];
-
-
-if(!name){
-
-showMessage(
-"Bitte einen Werkzeugnamen eingeben.",
+note(
+"Name und Besitzer müssen ausgefüllt sein.",
 "error"
 );
 
@@ -1645,33 +1221,20 @@ return;
 }
 
 
-if(!owner){
+const file=
+document
+.getElementById("photoInput")
+.files[0];
 
-showMessage(
-"Bitte Besitzer eingeben.",
-"error"
-);
-
-return;
-
-}
-
-
-b.disabled=true;
-
-b.textContent="Speichere...";
-
-
-try{
 
 let image_url="";
 
+if(file)
+image_url=
+await resizeImage(file);
 
-if(photo)
-image_url=await resizeImage(photo);
 
-
-const {error}=await db
+const r=await db
 .from("tools")
 .insert({
 
@@ -1679,11 +1242,17 @@ group_code:S.group,
 
 name,
 
-category,
+category:
+document
+.getElementById("toolCategory")
+.value,
 
 owner,
 
-description,
+description:
+document
+.getElementById("toolDescription")
+.value.trim(),
 
 image_url,
 
@@ -1693,51 +1262,41 @@ borrowed_at:null,
 
 due_date:null,
 
-created_by:S.name
+created_by:S.memberId
 
 });
 
 
-if(error)throw error;
+if(r.error){
+
+note(
+"Werkzeug konnte nicht gespeichert werden: "+
+r.error.message,
+"error"
+);
+
+return;
+
+}
 
 
-showMessage(
+note(
 "Werkzeug gespeichert ✓",
 "success"
 );
 
-
 home();
-
-
-}catch(e){
-
-console.error(e);
-
-showMessage(
-"Werkzeug konnte nicht gespeichert werden: "+
-e.message,
-"error"
-);
-
-
-b.disabled=false;
-
-b.textContent=
-"💾 Werkzeug speichern";
-
-}
 
 }
 
 
 /* =========================
-   WERKZEUG FÜR BEARBEITUNG
+   BEARBEITEN
 ========================= */
 
-async function getToolForEdit(id){
+async function getTool(id){
 
-const {data,error}=await db
+const r=await db
 .from("tools")
 .select("*")
 .eq("id",id)
@@ -1745,9 +1304,9 @@ const {data,error}=await db
 .single();
 
 
-if(error||!data){
+if(r.error||!r.data){
 
-showMessage(
+note(
 "Werkzeug konnte nicht gefunden werden.",
 "error"
 );
@@ -1757,10 +1316,10 @@ return null;
 }
 
 
-if(!isToolCreator(data)){
+if(!isCreator(r.data)){
 
-showMessage(
-"Nur die Person, die das Werkzeug hochgeladen hat, kann es bearbeiten.",
+note(
+"Nur der Uploader kann dieses Werkzeug bearbeiten.",
 "error"
 );
 
@@ -1769,26 +1328,22 @@ return null;
 }
 
 
-return data;
+return r.data;
 
 }
 
 
-/* =========================
-   WERKZEUG BEARBEITEN
-========================= */
-
 async function editTool(id){
 
-const tool=
-await getToolForEdit(id);
+const t=
+await getTool(id);
 
-if(!tool)return;
+if(!t)
+return;
 
 
-content.innerHTML=
-
-navigation()+`
+app.innerHTML=
+nav()+`
 
 <div class="box">
 
@@ -1798,33 +1353,30 @@ Werkzeug bearbeiten
 
 
 ${
-tool.image_url
-
+t.image_url
 ?
-
 `<img
 class="photo-preview"
-src="${esc(tool.image_url)}"
+src="${esc(t.image_url)}"
 alt="">`
-
 :
-
 ""
 }
 
 
 <label>
-Neues Foto (optional)
+Neues Foto
 </label>
 
 <input
-id="editPhotoInput"
+id="editPhoto"
 type="file"
 accept="image/*"
 capture="environment"
 >
 
-<div id="editPhotoPreview"></div>
+
+<div id="editPreview"></div>
 
 
 <label>
@@ -1832,8 +1384,8 @@ Werkzeugname
 </label>
 
 <input
-id="editToolName"
-value="${esc(tool.name)}"
+id="editName"
+value="${esc(t.name)}"
 >
 
 
@@ -1842,14 +1394,16 @@ Beschreibung
 </label>
 
 <textarea
-id="editToolDescription">${esc(tool.description||"")}</textarea>
+id="editDescription">
+${esc(t.description||"")}
+</textarea>
 
 
 <label>
 Kategorie
 </label>
 
-<select id="editToolCategory">
+<select id="editCategory">
 
 ${
 [
@@ -1860,18 +1414,14 @@ ${
 "Baustelle",
 "Sonstiges"
 ]
-
-.map(c=>
-
+.map(x=>
 `<option
-${c===(tool.category||"Sonstiges")
-?"selected"
-:""}>
-${c}
+${x===(t.category||"Sonstiges")
+?"selected":""}>
+${x}
 </option>`
-
-).join("")
-
+)
+.join("")
 }
 
 </select>
@@ -1882,26 +1432,20 @@ Besitzer
 </label>
 
 <input
-id="editToolOwner"
-value="${esc(tool.owner||"")}"
+id="editOwner"
+value="${esc(t.owner||"")}"
 >
 
 
 <button
-id="updateToolButton"
-onclick="updateTool('${tool.id}')">
-
+onclick="updateTool('${t.id}')">
 💾 Änderungen speichern
-
 </button>
-
 
 <button
 class="secondary"
 onclick="home()">
-
 Abbrechen
-
 </button>
 
 </div>
@@ -1910,275 +1454,159 @@ Abbrechen
 
 
 document
-.getElementById("editPhotoInput")
-.addEventListener(
-"change",
-previewEditPhoto
-);
+.getElementById("editPhoto")
+.onchange=e=>
+previewEditPhoto(e);
 
 }
 
 
-/* =========================
-   BEARBEITUNGS-FOTO
-========================= */
-
 function previewEditPhoto(e){
 
-const f=e.target.files[0];
+const file=e.target.files[0];
 
-if(!f)return;
-
+if(!file)
+return;
 
 const r=new FileReader();
 
-
-r.onload=()=>{
+r.onload=()=>
 
 document.getElementById(
-"editPhotoPreview"
+"editPreview"
 ).innerHTML=
 
 `<img
 class="photo-preview"
 src="${r.result}"
-alt="Neue Vorschau">`;
+alt="">`;
 
-};
-
-
-r.readAsDataURL(f);
+r.readAsDataURL(file);
 
 }
 
-
-/* =========================
-   WERKZEUG AKTUALISIEREN
-========================= */
 
 async function updateTool(id){
 
-const b=
-document.getElementById(
-"updateToolButton"
-);
+const t=
+await getTool(id);
 
-
-try{
-
-const {data:tool,error:loadError}=await db
-.from("tools")
-.select("*")
-.eq("id",id)
-.eq("group_code",S.group)
-.single();
-
-
-if(loadError||!tool){
-
-showMessage(
-"Werkzeug konnte nicht gefunden werden.",
-"error"
-);
-
+if(!t)
 return;
-
-}
-
-
-if(!isToolCreator(tool)){
-
-showMessage(
-"Nur der Uploader kann dieses Werkzeug bearbeiten.",
-"error"
-);
-
-home();
-
-return;
-
-}
-
-
-const name=
-document.getElementById(
-"editToolName"
-).value.trim();
-
-
-const description=
-document.getElementById(
-"editToolDescription"
-).value.trim();
-
-
-const category=
-document.getElementById(
-"editToolCategory"
-).value;
-
-
-const owner=
-document.getElementById(
-"editToolOwner"
-).value.trim();
-
-
-const photo=
-document.getElementById(
-"editPhotoInput"
-).files[0];
-
-
-if(!name){
-
-showMessage(
-"Bitte einen Werkzeugnamen eingeben.",
-"error"
-);
-
-return;
-
-}
-
-
-if(!owner){
-
-showMessage(
-"Bitte Besitzer eingeben.",
-"error"
-);
-
-return;
-
-}
-
-
-b.disabled=true;
-
-b.textContent="Speichere...";
 
 
 const changes={
-name,
-description,
-category,
-owner
+
+name:
+document
+.getElementById("editName")
+.value.trim(),
+
+description:
+document
+.getElementById("editDescription")
+.value.trim(),
+
+category:
+document
+.getElementById("editCategory")
+.value,
+
+owner:
+document
+.getElementById("editOwner")
+.value.trim()
+
 };
 
 
-if(photo)
+if(!changes.name||
+!changes.owner){
+
+note(
+"Name und Besitzer müssen ausgefüllt werden.",
+"error"
+);
+
+return;
+
+}
+
+
+const file=
+document
+.getElementById("editPhoto")
+.files[0];
+
+
+if(file)
 changes.image_url=
-await resizeImage(photo);
+await resizeImage(file);
 
 
-const {error}=await db
+const r=await db
 .from("tools")
 .update(changes)
 .eq("id",id)
 .eq("group_code",S.group)
-.eq("created_by",S.name);
+.eq("created_by",S.memberId);
 
 
-if(error)throw error;
+if(r.error){
+
+note(
+"Änderung fehlgeschlagen: "+
+r.error.message,
+"error"
+);
+
+return;
+
+}
 
 
-showMessage(
+note(
 "Werkzeug geändert ✓",
 "success"
 );
 
-
 home();
-
-
-}catch(e){
-
-console.error(e);
-
-showMessage(
-"Änderungen konnten nicht gespeichert werden: "+
-e.message,
-"error"
-);
-
-
-if(b){
-
-b.disabled=false;
-
-b.textContent=
-"💾 Änderungen speichern";
-
-}
-
-}
 
 }
 
 
 /* =========================
-   WERKZEUG LÖSCHEN
+   LÖSCHEN
 ========================= */
 
 async function deleteTool(id){
 
-const {data:tool,error}=await db
-.from("tools")
-.select(
-"id,name,group_code,created_by"
-)
-.eq("id",id)
-.eq("group_code",S.group)
-.single();
+const t=
+await getTool(id);
 
-
-if(error||!tool){
-
-showMessage(
-"Werkzeug konnte nicht gefunden werden.",
-"error"
-);
-
+if(!t)
 return;
-
-}
-
-
-if(!isToolCreator(tool)){
-
-showMessage(
-"Nur die Person, die das Werkzeug hochgeladen hat, kann es löschen.",
-"error"
-);
-
-return;
-
-}
 
 
 if(!confirm(
-`Möchtest du „${tool.name}“ wirklich löschen?
+`Möchtest du „${t.name}“ wirklich löschen?`
+))
+return;
 
-Das Werkzeug wird aus der Gruppe entfernt.`
-))return;
 
-
-const {error:de}=await db
+const r=await db
 .from("tools")
 .delete()
 .eq("id",id)
 .eq("group_code",S.group)
-.eq("created_by",S.name);
+.eq("created_by",S.memberId);
 
 
-if(de){
+if(r.error){
 
-console.error(de);
-
-showMessage(
-"Werkzeug konnte nicht gelöscht werden: "+
-de.message,
+note(
+"Löschen fehlgeschlagen: "+
+r.error.message,
 "error"
 );
 
@@ -2187,7 +1615,7 @@ return;
 }
 
 
-showMessage(
+note(
 "Werkzeug gelöscht ✓",
 "success"
 );
@@ -2198,12 +1626,19 @@ home();
 
 
 /* =========================
-   WERKZEUG AUSLEIHEN
+   AUSLEIHEN
 ========================= */
+
+function dateValue(d){
+
+return d.toISOString().slice(0,10);
+
+}
+
 
 async function borrowTool(id){
 
-const {data,error}=await db
+const r=await db
 .from("tools")
 .select("*")
 .eq("id",id)
@@ -2211,10 +1646,10 @@ const {data,error}=await db
 .single();
 
 
-if(error||!data){
+if(r.error||!r.data){
 
-showMessage(
-"Werkzeug konnte nicht gefunden werden.",
+note(
+"Werkzeug nicht gefunden.",
 "error"
 );
 
@@ -2223,13 +1658,13 @@ return;
 }
 
 
-const todayValue=
-toDateValue(new Date());
+const today=dateValue(
+new Date()
+);
 
 
-content.innerHTML=
-
-navigation()+`
+app.innerHTML=
+nav()+`
 
 <div class="box">
 
@@ -2237,13 +1672,10 @@ navigation()+`
 📦 Werkzeug ausleihen
 </h2>
 
-
-<p class="muted">
-
+<p>
 <b>
-${esc(data.name)}
+${esc(r.data.name)}
 </b>
-
 </p>
 
 
@@ -2252,17 +1684,16 @@ Wer leiht das Werkzeug aus?
 </label>
 
 <input
-id="borrowerInput"
+id="borrower"
 value="${esc(S.name)}"
-placeholder="Name"
 >
 
 
-<div class="loan-date-box">
+<div class="loanbox">
 
-<div class="loan-date-row">
+<div class="dates">
 
-<div class="loan-date-column">
+<div>
 
 <label>
 Von
@@ -2271,13 +1702,13 @@ Von
 <input
 id="borrowFrom"
 type="date"
-value="${todayValue}"
+value="${today}"
 >
 
 </div>
 
 
-<div class="loan-date-column">
+<div>
 
 <label>
 Bis
@@ -2286,7 +1717,7 @@ Bis
 <input
 id="borrowUntil"
 type="date"
-value="${todayValue}"
+value="${today}"
 >
 
 </div>
@@ -2294,16 +1725,14 @@ value="${todayValue}"
 </div>
 
 
-<label class="no-due-row">
+<label class="nodue">
 
 <input
-id="noDueDate"
+id="noDue"
 type="checkbox"
 >
 
-<span>
 Ohne Rückgabedatum
-</span>
 
 </label>
 
@@ -2311,20 +1740,15 @@ Ohne Rückgabedatum
 
 
 <button
-id="confirmBorrowButton"
 onclick="confirmBorrow('${id}')">
-
 📦 Werkzeug ausleihen
-
 </button>
 
 
 <button
 class="secondary"
 onclick="home()">
-
 Abbrechen
-
 </button>
 
 </div>
@@ -2332,110 +1756,66 @@ Abbrechen
 `;
 
 
-const until=
-document.getElementById(
-"borrowUntil"
-);
+document
+.getElementById("noDue")
+.onchange=()=>{
 
-const none=
-document.getElementById(
-"noDueDate"
-);
+document
+.getElementById("borrowUntil")
+.disabled=
+document
+.getElementById("noDue")
+.checked;
 
-
-none.addEventListener(
-"change",
-()=>{
-
-until.disabled=none.checked;
-
-until.style.opacity=
-none.checked
-?".5"
-:"1";
-
-});
+};
 
 
 document
 .getElementById("borrowFrom")
-.addEventListener(
-"change",
-()=>{
+.onchange=()=>{
 
-const from=
-document.getElementById(
-"borrowFrom"
-).value;
+const f=
+document
+.getElementById("borrowFrom")
+.value;
 
+document
+.getElementById("borrowUntil")
+.min=f;
 
-if(
-from &&
-!none.checked
-){
-
-until.min=from;
-
-
-if(
-until.value &&
-until.value<from
-){
-
-until.value=from;
+};
 
 }
 
-}
-
-});
-
-
-until.min=todayValue;
-
-}
-
-
-/* =========================
-   AUSLEIHE BESTÄTIGEN
-========================= */
 
 async function confirmBorrow(id){
 
-const b=
-document.getElementById(
-"confirmBorrowButton"
-);
-
-
 const borrower=
-document.getElementById(
-"borrowerInput"
-).value.trim();
-
+document
+.getElementById("borrower")
+.value.trim();
 
 const from=
-document.getElementById(
-"borrowFrom"
-).value;
-
+document
+.getElementById("borrowFrom")
+.value;
 
 const until=
-document.getElementById(
-"borrowUntil"
-).value;
+document
+.getElementById("borrowUntil")
+.value;
+
+const noDue=
+document
+.getElementById("noDue")
+.checked;
 
 
-const none=
-document.getElementById(
-"noDueDate"
-).checked;
+if(!borrower||!from||
+(!noDue&&!until)){
 
-
-if(!borrower){
-
-showMessage(
-"Bitte Namen eingeben.",
+note(
+"Bitte alle Angaben ausfüllen.",
 "error"
 );
 
@@ -2444,33 +1824,9 @@ return;
 }
 
 
-if(!from){
+if(!noDue&&until<from){
 
-showMessage(
-"Bitte ein Startdatum auswählen.",
-"error"
-);
-
-return;
-
-}
-
-
-if(!none&&!until){
-
-showMessage(
-"Bitte ein Rückgabedatum auswählen.",
-"error"
-);
-
-return;
-
-}
-
-
-if(!none&&until<from){
-
-showMessage(
+note(
 "Das Rückgabedatum darf nicht vor dem Startdatum liegen.",
 "error"
 );
@@ -2480,144 +1836,35 @@ return;
 }
 
 
-b.disabled=true;
-
-b.textContent="Speichere...";
-
-
-try{
-
-const borrowedAt=
+const borrowed_at=
 new Date(
 from+"T12:00:00"
 ).toISOString();
 
-
-const dueDate=
-none
-?
-null
-:
-until;
+const due_date=
+noDue?null:until;
 
 
-const {error:updateError}=await db
+const r=await db
 .from("tools")
 .update({
 
 borrower,
 
-borrowed_at:borrowedAt,
+borrowed_at,
 
-due_date:dueDate
+due_date
 
 })
 .eq("id",id)
 .eq("group_code",S.group);
 
 
-if(updateError)
-throw updateError;
+if(r.error){
 
-
-const {data:tool}=await db
-.from("tools")
-.select("name")
-.eq("id",id)
-.eq("group_code",S.group)
-.single();
-
-
-const {error:historyError}=await db
-.from("loan_history")
-.insert({
-
-group_code:S.group,
-
-tool_id:id,
-
-tool_name:
-tool
-?
-tool.name
-:
-"Werkzeug",
-
-borrower,
-
-borrowed_at:borrowedAt,
-
-due_date:dueDate
-
-});
-
-
-if(historyError)
-console.error(historyError);
-
-
-showMessage(
-"Werkzeug wurde ausgeliehen ✓",
-"success"
-);
-
-home();
-
-
-}catch(e){
-
-console.error(e);
-
-showMessage(
+note(
 "Ausleihen fehlgeschlagen: "+
-e.message,
-"error"
-);
-
-
-b.disabled=false;
-
-b.textContent=
-"📦 Werkzeug ausleihen";
-
-}
-
-}
-
-
-/* =========================
-   DATUM
-========================= */
-
-function toDateValue(d){
-
-return `${d.getFullYear()}-${
-String(d.getMonth()+1).padStart(2,"0")
-}-${
-String(d.getDate()).padStart(2,"0")
-}`;
-
-}
-
-
-/* =========================
-   WERKZEUG ZURÜCKGEBEN
-========================= */
-
-async function returnTool(id){
-
-const {data,error}=await db
-.from("tools")
-.select("*")
-.eq("id",id)
-.eq("group_code",S.group)
-.single();
-
-
-if(error||!data){
-
-showMessage(
-"Werkzeug konnte nicht gefunden werden.",
+r.error.message,
 "error"
 );
 
@@ -2626,7 +1873,51 @@ return;
 }
 
 
-const {error:updateError}=await db
+const tr=await db
+.from("tools")
+.select("name")
+.eq("id",id)
+.single();
+
+
+await db
+.from("loan_history")
+.insert({
+
+group_code:S.group,
+
+tool_id:id,
+
+tool_name:
+tr.data?.name||
+"Werkzeug",
+
+borrower,
+
+borrowed_at,
+
+due_date
+
+});
+
+
+note(
+"Werkzeug wurde ausgeliehen ✓",
+"success"
+);
+
+home();
+
+}
+
+
+/* =========================
+   ZURÜCKGEBEN
+========================= */
+
+async function returnTool(id){
+
+const r=await db
 .from("tools")
 .update({
 
@@ -2641,11 +1932,11 @@ due_date:null
 .eq("group_code",S.group);
 
 
-if(updateError){
+if(r.error){
 
-showMessage(
+note(
 "Rückgabe fehlgeschlagen: "+
-updateError.message,
+r.error.message,
 "error"
 );
 
@@ -2667,7 +1958,7 @@ new Date().toISOString()
 .is("returned_at",null);
 
 
-showMessage(
+note(
 "Werkzeug zurückgegeben ✓",
 "success"
 );
@@ -2683,9 +1974,8 @@ home();
 
 async function people(){
 
-content.innerHTML=
-
-navigation()+`
+app.innerHTML=
+nav()+`
 
 <div class="box">
 
@@ -2697,19 +1987,13 @@ Dein Gruppen-Code
 ${esc(S.group)}
 </div>
 
-
 <p class="muted">
-
 Teile diesen Code mit deinen Freunden.
-Sie können damit deiner Gruppe beitreten.
-
 </p>
-
 
 <button onclick="copyGroupCode()">
 📋 Code kopieren
 </button>
-
 
 <button onclick="addPerson()">
 ＋ Person hinzufügen
@@ -2724,7 +2008,7 @@ Sie können damit deiner Gruppe beitreten.
 Mitglieder
 </h3>
 
-<div id="membersList">
+<div id="members">
 Laden...
 </div>
 
@@ -2733,62 +2017,70 @@ Laden...
 `;
 
 
-const {data,error}=await db
+const r=await db
 .from("members")
-.select("*")
+.select(
+"id,name,created_at"
+)
 .eq("group_code",S.group)
 .order("name");
 
 
-if(error){
-
-document.getElementById(
-"membersList"
-).innerHTML=
-
-`<p class="muted">
-${esc(error.message)}
-</p>`;
-
+if(r.error)
 return;
 
-}
+
+const members=r.data||[];
+
+const total={};
+const seen={};
 
 
-const members=data||[];
+members.forEach(m=>{
+total[m.name]=
+(total[m.name]||0)+1;
+});
 
 
 document.getElementById(
-"membersList"
+"members"
 ).innerHTML=
 
-members.length
+members.map(m=>{
 
-?
+seen[m.name]=
+(seen[m.name]||0)+1;
 
-members.map(m=>
 
-`<div class="member">
+return`
+
+<div class="member">
 
 👤 <b>
 ${esc(m.name)}
 </b>
 
-</div>`
-
-).join("")
-
+${
+total[m.name]>1
+?
+`<span class="muted small">
+· Konto ${seen[m.name]}
+</span>`
 :
+""
+}
 
-`<p class="muted">
-Noch keine Mitglieder.
-</p>`;
+</div>
+
+`;
+
+}).join("");
 
 }
 
 
 /* =========================
-   GRUPPENCODE KOPIEREN
+   CODE KOPIEREN
 ========================= */
 
 async function copyGroupCode(){
@@ -2798,18 +2090,15 @@ try{
 await navigator.clipboard
 .writeText(S.group);
 
-
-showMessage(
+note(
 "Gruppencode kopiert ✓",
 "success"
 );
 
-
 }catch(e){
 
-showMessage(
-"Code: "+S.group,
-"notice"
+note(
+"Code: "+S.group
 );
 
 }
@@ -2824,52 +2113,31 @@ showMessage(
 async function addPerson(){
 
 const name=
-prompt("Name der Person");
-
-
-if(!name||!name.trim())
-return;
-
-
-const clean=name.trim();
-
-
-const {data}=await db
-.from("members")
-.select("id")
-.eq("group_code",S.group)
-.eq("name",clean)
-.limit(1);
-
-
-if(data&&data.length){
-
-showMessage(
-"Diese Person ist bereits in der Gruppe.",
-"error"
+prompt(
+"Name der Person"
 );
 
+
+if(!name?.trim())
 return;
 
-}
 
-
-const {error}=await db
+const r=await db
 .from("members")
 .insert({
 
 group_code:S.group,
 
-name:clean
+name:name.trim()
 
 });
 
 
-if(error){
+if(r.error){
 
-showMessage(
+note(
 "Person konnte nicht hinzugefügt werden: "+
-error.message,
+r.error.message,
 "error"
 );
 
@@ -2878,12 +2146,183 @@ return;
 }
 
 
-showMessage(
+note(
 "Person hinzugefügt ✓",
 "success"
 );
 
 people();
+
+}
+
+
+/* =========================
+   KONTO WECHSELN
+========================= */
+
+async function accounts(){
+
+const r=await db
+.from("members")
+.select(
+"id,name,created_at"
+)
+.eq("group_code",S.group)
+.order(
+"created_at",
+{ascending:true}
+);
+
+
+if(r.error){
+
+note(
+"Konten konnten nicht geladen werden.",
+"error"
+);
+
+return;
+
+}
+
+
+const same=
+(r.data||[])
+.filter(
+m=>m.name===S.name
+);
+
+
+if(same.length<2){
+
+note(
+"Für deinen Namen gibt es nur ein Konto."
+);
+
+return;
+
+}
+
+
+app.innerHTML=
+nav()+`
+
+<div class="box">
+
+<h2>
+👤 Konto wechseln
+</h2>
+
+<p class="muted">
+
+Es gibt mehrere Konten mit dem Namen
+<b>${esc(S.name)}</b>.
+
+Wähle das gewünschte Konto:
+
+</p>
+
+<div id="accounts"></div>
+
+</div>
+
+`;
+
+
+document.getElementById(
+"accounts"
+).innerHTML=
+
+same.map((m,i)=>{
+
+const active=
+String(m.id)===
+String(S.memberId);
+
+
+const date=
+m.created_at
+?
+new Date(
+m.created_at
+).toLocaleDateString(
+"de-DE"
+)
+:
+"";
+
+
+return`
+
+<button
+class="account-btn ${
+active?"":"secondary"
+}"
+onclick="selectAccount('${m.id}')">
+
+👤 ${esc(m.name)}
+
+· Konto ${i+1}
+
+${active?" · aktuell":""}
+
+<br>
+
+<span class="small">
+
+Angelegt:
+${date}
+
+</span>
+
+</button>
+
+`;
+
+}).join("");
+
+}
+
+
+/* =========================
+   KONTO AUSWÄHLEN
+========================= */
+
+async function selectAccount(id){
+
+const r=await db
+.from("members")
+.select(
+"id,name,group_code"
+)
+.eq("id",id)
+.eq("group_code",S.group)
+.single();
+
+
+if(r.error||!r.data){
+
+note(
+"Konto konnte nicht ausgewählt werden.",
+"error"
+);
+
+return;
+
+}
+
+
+S.memberId=r.data.id;
+S.name=r.data.name;
+
+saveUser();
+
+note(
+"Konto gewechselt ✓",
+"success"
+);
+
+home();
 
 }
 
@@ -2908,10 +2347,30 @@ welcome();
 
 
 /* =========================
-   STARTEN
+   START
 ========================= */
 
-start();
+(async()=>{
+
+if(S){
+
+if(await ensureMember()){
+
+home();
+
+}else{
+
+welcome();
+
+}
+
+}else{
+
+welcome();
+
+}
+
+})();
 
 </script>
 
